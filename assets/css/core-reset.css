@@ -1,0 +1,46 @@
+/* ======================
+   LISTS RESET
+   ====================== */
+
+   ul, ol, menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    
+    &::before, &::after {
+      content: none;
+    }
+  }
+
+  ul ul, ol ol, ul ol, ol ul {
+    margin-left: 0em;
+  }
+  
+
+  [role="list"] {
+    list-style: none;
+  }
+
+/* ======================
+   LINKS
+   ====================== */
+
+  a {
+    color: inherit; /* Убирает синий цвет, наследует цвет текста родителя */
+    text-decoration: none; /* Убирает подчёркивание */
+    outline: none; /* Убирает обводку при фокусе */
+    cursor: pointer; /* Оставляет указатель мыши */
+  }
+  
+  a:hover,
+  a:focus,
+  a:active {
+    color: inherit; /* Убирает изменение цвета при наведении/фокусе */
+    text-decoration: none; /* Убирает подчёркивание при наведении */
+  }

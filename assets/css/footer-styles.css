@@ -1,0 +1,177 @@
+input, textarea, select, button {
+    all: unset;
+    cursor: text;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+.main-footer {
+  background: #fff;
+  padding: 40px 0;
+  border-top: 1px solid #eee;
+}
+
+.footer-container {
+  display: flex;
+  max-width: var(--max-content-width, 1200px);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 0 0 50%; /* Фиксированно по 50% ширины */
+  max-width: 50%; /* Максимальная ширина 50% */
+  box-sizing: border-box; /* Чтобы padding не влиял на ширину */
+}
+
+/* Для правой секции добавьте выравнивание */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Выравнивание по правому краю */
+  justify-content: space-between; /* Распределение пространства */
+  padding-left: 40px; /* Отступ от формы */
+}
+
+.form-section {
+  flex-basis: 50%;
+}
+
+.footer-order-form-container {
+  max-width: 100%;
+}
+
+/* Стили формы (как в предыдущем примере) */
+.form-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  min-width: 120px;
+  max-width: 100%;
+  width: 100%;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  flex: 0 0 120px;
+  margin-right: 10px;
+  color: #555;
+}
+
+.form-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 5px;
+  outline: none;
+}
+
+.form-row input:focus {
+  background: var(--kbps-global-color-main);
+  color: white;
+}
+
+.submit-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: var(--kbps-global-color-main);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Правая секция */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.back-to-top {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--kbps-global-color-main);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.footer-logo img {
+  max-height: 80px;
+  width: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
+  }
+  
+  .footer-section {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+  
+  .actions-section {
+      padding-left: 0;
+      flex-direction: row-reverse; /* Лого слева, кнопка справа */
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+  }
+}
+
+#wedding-date {
+  color: transparent; /* Скрывает выбранную дату */
+}
+#wedding-date:valid {
+  color: inherit; /* Показывает дату после выбора */
+}
+
+
+
+/* Сообщения формы */
+#form-message {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.loading-message {
+  color: #31708f;
+  background-color: #d9edf7;
+  border: 1px solid #bce8f1;
+}
+
+.success-message {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+}
+
+.error-message {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+}
+
+.error-message ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}

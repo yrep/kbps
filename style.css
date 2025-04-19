@@ -1,0 +1,18 @@
+/**
+Theme Name: KBPS
+Author: Alexander Yurkinskiy
+Description: The KBPS WordPress theme is a custom theme for Krakhmalnikov.eu
+Requires at least: 5.3
+WC requires at least: 3.0
+WC tested up to: 9.6
+Tested up to: 6.7.2
+Requires PHP: 8.2
+*/
+
+/*
+max_width = 2080px
+header height = min on scroll
+Screen 1200 px = menu 1000px (меню уменьшается)
+srink proportionally
+наполнения торта связаны с фото
+*/

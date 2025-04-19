@@ -1,0 +1,107 @@
+.cake-archive {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1em;
+}
+.cake-card {
+    position: relative;
+}
+.cake-image {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+.model-number {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+.cake-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    border-radius: 5px;
+    position: relative;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.filling-list {
+    list-style: none;
+    padding: 0;
+}
+.filling-list li {
+    margin: 0.5em 0;
+}
+.filling-list a {
+    text-decoration: none;
+    color: #0073aa;
+}
+.filling-list a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+.main-image img {
+    max-width: 100%;
+    height: auto;
+}
+.cake-details p {
+    margin: 0.5em 0;
+}
+.selected-filling .filling-card {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.filling-image img {
+    max-width: 150px;
+    height: auto;
+}
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.gallery-image img {
+    max-width: 200px;
+    height: auto;
+}
+
+.scroll-to-footer {
+    padding: 0.5em 1em;
+    background: #0073aa;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

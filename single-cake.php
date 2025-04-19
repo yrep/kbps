@@ -1,0 +1,92 @@
+<?php
+get_header();
+if (have_posts()) : while (have_posts()) : the_post();
+    $model = get_post_meta(get_the_ID(), 'kbps_model', true);
+    $description = get_post_meta(get_the_ID(), 'kbps_description', true);
+    $ingredients = get_post_meta(get_the_ID(), 'kbps_ingredients', true);
+    $finishing = get_post_meta(get_the_ID(), 'kbps_finishing', true);
+    $decoration = get_post_meta(get_the_ID(), 'kbps_decoration', true);
+    $tiers = get_post_meta(get_the_ID(), 'kbps_tiers', true);
+    $shape = get_post_meta(get_the_ID(), 'kbps_shape', true);
+    $gallery = get_post_meta(get_the_ID(), 'kbps_gallery', true);
+    $filling_ids = get_post_meta(get_the_ID(), 'kbps_available_fillings', true);
+    $selected_filling_id = isset($_GET['filling_id']) ? absint($_GET['filling_id']) : 0;
+?>
+<main id="main-content">
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <header class="entry-header">
+            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <?php if (has_post_thumbnail()) : ?>
+                <div class="main-image">
+                    <?php the_post_thumbnail('full'); ?>
+                </div>
+            <?php endif; ?>
+        </header>
+
+        <div class="entry-content">
+            <section class="cake-details">
+                <h2><?php _e('Cake Details', 'kbps'); ?></h2>
+                <p><strong><?php _e('Model Number', 'kbps'); ?>:</strong> <?php echo esc_html($model); ?></p>
+                <p><strong><?php _e('Description', 'kbps'); ?>:</strong> <?php echo esc_html($description); ?></p>
+                <p><strong><?php _e('Ingredients', 'kbps'); ?>:</strong> <?php echo esc_html($ingredients); ?></p>
+                <p><strong><?php _e('Finishing', 'kbps'); ?>:</strong> <?php echo esc_html($finishing); ?></p>
+                <p><strong><?php _e('Decoration', 'kbps'); ?>:</strong> <?php echo esc_html($decoration); ?></p>
+                <p><strong><?php _e('Tiers', 'kbps'); ?>:</strong> <?php echo esc_html($tiers); ?></p>
+                <p><strong><?php _e('Shape', 'kbps'); ?>:</strong> <?php echo esc_html($shape); ?></p>
+            </section>
+
+            <?php if ($selected_filling_id && get_post($selected_filling_id)) : 
+                $filling = get_post($selected_filling_id);
+                $filling_image = get_the_post_thumbnail($selected_filling_id, 'medium');
+            ?>
+                <section class="selected-filling">
+                    <h2><?php _e('Selected Filling', 'kbps'); ?></h2>
+                    <div class="filling-card">
+                        <?php if ($filling_image) : ?>
+                            <div class="filling-image"><?php echo $filling_image; ?></div>
+                        <?php endif; ?>
+                        <h3><?php echo esc_html($filling->post_title); ?></h3>
+                    </div>
+                </section>
+            <?php endif; ?>
+
+            <?php if ($gallery) : 
+                $gallery_ids = explode(',', $gallery);
+            ?>
+                <section class="cake-gallery">
+                    <h2><?php _e('Gallery', 'kbps'); ?></h2>
+                    <div class="gallery-images">
+                        <?php foreach ($gallery_ids as $image_id) : 
+                            $image = wp_get_attachment_image($image_id, 'medium');
+                            if ($image) :
+                        ?>
+                            <div class="gallery-image"><?php echo $image; ?></div>
+                        <?php endif; endforeach; ?>
+                    </div>
+                </section>
+            <?php endif; ?>
+
+            <button class="scroll-to-footer"><?php _e('Order Now', 'kbps'); ?></button>
+        </div>
+    </article>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollButton = document.querySelector('.scroll-to-footer');
+    if (scrollButton) {
+        scrollButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            const footer = document.querySelector('footer');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+});
+</script>
+
+<?php
+endwhile; endif;
+get_footer();
+?>

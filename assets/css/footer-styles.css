@@ -10,7 +10,7 @@ input:focus, textarea:focus {
 .main-footer {
   background: #fff;
   padding: 40px 0;
-  border-top: 1px solid #eee;
+  /*border-top: 1px solid #c63232;*/
 }
 
 .footer-container {
@@ -21,18 +21,18 @@ input:focus, textarea:focus {
 }
 
 .footer-section {
-  flex: 0 0 50%; /* Фиксированно по 50% ширины */
-  max-width: 50%; /* Максимальная ширина 50% */
-  box-sizing: border-box; /* Чтобы padding не влиял на ширину */
+  flex: 0 0 50%;
+  max-width: 50%;
+  box-sizing: border-box;
 }
 
-/* Для правой секции добавьте выравнивание */
+
 .actions-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Выравнивание по правому краю */
-  justify-content: space-between; /* Распределение пространства */
-  padding-left: 40px; /* Отступ от формы */
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-left: 40px;
 }
 
 .form-section {
@@ -43,12 +43,11 @@ input:focus, textarea:focus {
   max-width: 100%;
 }
 
-/* Стили формы (как в предыдущем примере) */
 .form-row {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  min-width: 120px;
+  border-bottom: 1px solid var(--kbps-global-color-secondary);
+  min-width: 140px;
   max-width: 100%;
   width: 100%;
   padding-bottom: 5px;
@@ -56,13 +55,15 @@ input:focus, textarea:focus {
 }
 
 .form-row label {
-  flex: 0 0 120px;
-  margin-right: 10px;
+  flex: 0 1 auto;
+  margin-right: 2rem;
   color: #555;
+  white-space: nowrap;
 }
 
 .form-row input {
   flex: 1;
+  min-width: 10px;
   border: none;
   background: transparent;
   padding: 5px;
@@ -83,7 +84,6 @@ input:focus, textarea:focus {
   cursor: pointer;
 }
 
-/* Правая секция */
 .actions-section {
   display: flex;
   flex-direction: column;
@@ -117,7 +117,7 @@ input:focus, textarea:focus {
   width: auto;
 }
 
-/* Адаптивность */
+
 @media (max-width: 768px) {
   .footer-container {
       flex-direction: column;
@@ -130,7 +130,7 @@ input:focus, textarea:focus {
   
   .actions-section {
       padding-left: 0;
-      flex-direction: row-reverse; /* Лого слева, кнопка справа */
+      flex-direction: row-reverse;
       align-items: center;
       justify-content: space-between;
       margin-top: 30px;
@@ -138,15 +138,13 @@ input:focus, textarea:focus {
 }
 
 #wedding-date {
-  color: transparent; /* Скрывает выбранную дату */
+  color: transparent;
 }
 #wedding-date:valid {
-  color: inherit; /* Показывает дату после выбора */
+  color: inherit;
 }
 
 
-
-/* Сообщения формы */
 #form-message {
   margin: 20px 0;
   padding: 15px;

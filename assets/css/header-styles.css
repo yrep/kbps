@@ -4,7 +4,7 @@ body {
     font-family: 'JetBrainsMono', sans-serif;
   }
 
-.main-wrapper {
+.kbps-main-wrapper {
     max-width: var(--max-content-width) !important;
     margin: auto;
 }
@@ -15,7 +15,7 @@ body {
     align-items: center;
     padding: 20px;
     background: #fff;
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 2px solid #b62a2a;*/
 }
 
 

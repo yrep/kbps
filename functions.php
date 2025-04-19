@@ -10,10 +10,12 @@ if (!defined('ABSPATH')) {
 // 1. Определяем константы
 define('KBPS_THEME_DIR', trailingslashit(get_template_directory()));
 define('KBPS_THEME_URI', trailingslashit(esc_url(get_template_directory_uri())));
+define('KBPS_DEBUG', true);
 
 // 2. Подключаем файлы с проверкой их существования
 $required_files = [
     'helpers/KBPSLogger.php',
+    'helpers/KBPSDebugMessage.php',
     'inc/KBPSThemeSetup.php',
     'inc/KBPSThemeAssets.php',
     'inc/KBPSThemeCore.php',
@@ -21,18 +23,23 @@ $required_files = [
     'inc/CakeRequestPostType.php',
     'inc/CakePostType.php',
     'inc/FillingPostType.php',
+    'inc/CakePostManager.php',
+    'inc/StaticPhotoManager.php',
 ];
+
+
 
 foreach ($required_files as $file) {
     $file_path = KBPS_THEME_DIR . $file;
     if (file_exists($file_path)) {
         require_once $file_path;
     } else {
-        wp_die(sprintf('Ошибка темы: отсутствует необходимый файл %s', $file));
+        wp_die(sprintf('Error: file not found %s', $file));
     }
 }
 
-// Создание основного меню KBPS
+
+// Main left menu item
 add_action('admin_menu', function() {
     add_menu_page(
         __('KBPS', 'kbps'),
@@ -55,10 +62,12 @@ new CakePostType();
 new FillingPostType();
 
 
-// 4. Регистрируем активацию темы
+//sm('Test debug message'));
+//KBPSLogger::get_instance()->info('Test Logger');
+
 register_activation_hook(__FILE__, function() {
     if (class_exists('KBPSLogger')) {
-        KBPSLogger::get_instance()->info('Активация темы');
+        KBPSLogger::get_instance()->info('Theme Activated');
     }
 });
 
@@ -78,6 +87,10 @@ add_filter('single_template', function($template) {
 });
 
 add_filter('template_include', function($template) {
-    error_log('Current template: ' . $template);
+
+    kbps_log('Template loaded', [
+        'template' => $template
+    ]);
+
     return $template;
 }, 1000);

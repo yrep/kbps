@@ -16,7 +16,7 @@ get_header(); ?>
 		
 
 		?>
-		<h1>Main Content</h1>
+		<h1>Index.php</h1>
 	</div>
 <?php
 

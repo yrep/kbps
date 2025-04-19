@@ -17,7 +17,7 @@ global $kbpsCore;
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<div <?php $kbpsCore->getClass('main_wrapper'); ?>> <!-- Основная обертка -->
+<div <?php $kbpsCore->getClassAttr('main_wrapper'); ?>>
     <header class="kbps-header-desktop">
         <div class="kbps-header-container">
             <!-- LOGO -->

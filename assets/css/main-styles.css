@@ -105,3 +105,243 @@
     border: none;
     cursor: pointer;
 }
+
+
+
+/* Front page */
+
+/* Desktop */
+.wedding-block {
+    display: grid;
+    grid-template-columns: 36% 18% 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-height: 1200px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper,
+.wedding-block__small-photo-wrapper,
+.wedding-block__text-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.wedding-block__big-photo-wrapper {
+    height: auto;
+    width: 100%;
+}
+
+.wedding-block__small-photo-wrapper {
+    height: auto;
+    width: 100%;
+}
+
+.wedding-block__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60%;
+    box-sizing: border-box;
+}
+
+.kbps-thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.wedding-block__text {
+    font-size: x-small;
+    font-weight: 200;
+    line-height: 1.7;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    .wedding-blocks-wrapper {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 0;
+    }
+    
+    .wedding-block {
+        display: grid;
+        grid-template-areas: 
+            "text text"
+            "big-photo small-photo";
+        grid-template-columns: 66% 34%;
+        align-items: start;
+        gap: 0;
+    }
+    
+    .wedding-block__text-wrapper {
+    padding-top: 0;
+    grid-area: text;
+    }
+    
+    .wedding-block__big-photo-wrapper {
+    grid-area: big-photo;
+    }
+    
+    .wedding-block__small-photo-wrapper {
+    grid-area: small-photo;
+    }
+    
+    .wedding-block__big-photo-wrapper img,
+    .wedding-block__small-photo-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    }
+    
+    .wedding-block__text {
+    padding: 2rem;
+    margin: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.wedding-block {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    width: 100%;
+    max-height: 1200px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper,
+.wedding-block__small-photo-wrapper,
+.wedding-block__text-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.wedding-block__big-photo-wrapper {
+    flex: 0 0 36%;
+    height: 100%;
+}
+
+.wedding-block__small-photo-wrapper {
+    flex: 0 0 18%;
+    height: 100%;
+}
+
+.wedding-block__text-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.kbps-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.wedding-block__text {
+    padding-top: 60%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: x-small;
+    font-weight: 200;
+    line-height: 1.7;
+    word-wrap: break-word;
+}
+
+.wedding-block__text-wrapper {
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 768px) {
+    .wedding-block {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0;
+        max-height: none;
+        height: auto;
+    }
+
+    .wedding-block__text-wrapper {
+        order: 1;
+        width: 100%;
+        padding: 2rem;
+        height: auto;
+        display: block;
+    }
+
+    .wedding-block__text {
+        padding: 0;
+        font-size: small;
+        line-height: 1.6;
+    }
+
+    .wedding-block__big-photo-wrapper,
+    .wedding-block__small-photo-wrapper {
+        order: 2;
+        display: inline-block;
+        vertical-align: top;
+        height: auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .wedding-block__big-photo-wrapper {
+        width: 66.66%;
+    }
+
+    .wedding-block__small-photo-wrapper {
+        width: 33.33%;
+    }
+
+    .wedding-block__big-photo-wrapper,
+    .wedding-block__small-photo-wrapper {
+        display: inline-block;
+        float: left;
+    }
+
+    .wedding-block__big-photo-wrapper::before,
+    .wedding-block__small-photo-wrapper::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+
+    .wedding-block__big-photo-wrapper img,
+    .wedding-block__small-photo-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+*/

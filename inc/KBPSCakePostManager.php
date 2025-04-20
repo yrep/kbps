@@ -1,6 +1,6 @@
 <?php
 
-class CakePostManager {
+class KBPSCakePostManager {
 
 	/**
 	 * HTML with Cake Featured image with link by slug

@@ -18,13 +18,14 @@ $required_files = [
     'helpers/KBPSDebugMessage.php',
     'inc/KBPSThemeSetup.php',
     'inc/KBPSThemeAssets.php',
+    'inc/KBPSPageManager.php',
     'inc/KBPSThemeCore.php',
     'inc/KBPSAjax.php',
-    'inc/CakeRequestPostType.php',
-    'inc/CakePostType.php',
-    'inc/FillingPostType.php',
-    'inc/CakePostManager.php',
-    'inc/StaticPhotoManager.php',
+    'inc/KBPSCakeRequestPostType.php',
+    'inc/KBPSCakePostType.php',
+    'inc/KBPSFillingPostType.php',
+    'inc/KBPSCakePostManager.php',
+    'inc/KBPSStaticPhotoManager.php',
 ];
 
 
@@ -57,9 +58,9 @@ $kbpsCore = new KBPSThemeCore();
 $kbpsSetup = new KBPSThemeSetup();
 $kbpsAssets = new KBPSThemeAssets();
 $kbpsAjax = new KBPSAjax();
-new CakeRequestPostType();
-new CakePostType();
-new FillingPostType();
+$kbpsCakeRequest = new KBPSCakeRequestPostType();
+$kbpsCake = new KBPSCakePostType();
+$kbpsFilling = new KBPSFillingPostType();
 
 
 //sm('Test debug message'));
@@ -72,6 +73,7 @@ register_activation_hook(__FILE__, function() {
 });
 
 flush_rewrite_rules();
+
 
 add_filter('single_template', function($template) {
     global $post;
@@ -86,6 +88,7 @@ add_filter('single_template', function($template) {
     return $template;
 });
 
+/* Log template
 add_filter('template_include', function($template) {
 
     kbps_log('Template loaded', [
@@ -94,3 +97,4 @@ add_filter('template_include', function($template) {
 
     return $template;
 }, 1000);
+*/

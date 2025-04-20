@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class StaticPhotoManager {
+class KBPSStaticPhotoManager {
     private static $base_uri = 'assets/images/wedding/';
     private static $base_path;
 

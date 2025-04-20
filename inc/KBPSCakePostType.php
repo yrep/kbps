@@ -1,5 +1,5 @@
 <?php
-class CakePostType {
+class KBPSCakePostType {
     public function __construct() {
         add_action('init', array($this, 'register_post_type'));
         add_action('init', array($this, 'register_taxonomy'));

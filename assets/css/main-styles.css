@@ -110,7 +110,7 @@
 
 /* Front page */
 
-/* Desktop */
+/* Block-1 Desktop */
 .wedding-block {
     display: grid;
     grid-template-columns: 36% 18% 1fr;
@@ -162,7 +162,7 @@
 }
 
 
-/* Mobile */
+/* BLOCK-1 Mobile */
 @media (max-width: 768px) {
     .wedding-blocks-wrapper {
         display: grid;

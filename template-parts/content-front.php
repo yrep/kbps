@@ -1,15 +1,14 @@
 <section class="front-section">
     <div class="wedding-blocks-wrapper">
-        <div class="wedding-block">
-            
+        <div class="wedding-block block-1">
             <div class="wedding-block__big-photo-wrapper">
             <?php
-            CakePostManager::getFeaturedImageWithLink('napoleon-cake');
+            KBPSCakePostManager::getFeaturedImageWithLink('napoleon-cake');
             ?>
             </div>
             <div class="wedding-block__small-photo-wrapper">
             <?php
-            StaticPhotoManager::getImage('wedding-photo-01');
+            KBPSStaticPhotoManager::getImage('wedding-photo-01');
             ?>
             </div>
             <div class="wedding-block__text-wrapper">

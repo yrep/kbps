@@ -52,7 +52,6 @@ $term = get_queried_object();
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Копирование номера модели
     document.querySelectorAll('.model-number').forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Обработка модального окна
+
     document.querySelectorAll('.cake-image-link').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Закрытие модального окна
+
     document.querySelectorAll('.modal-close').forEach(close => {
         close.addEventListener('click', function() {
             const modal = this.closest('.cake-modal');
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Закрытие при клике вне модального окна
+
     document.querySelectorAll('.cake-modal').forEach(modal => {
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {

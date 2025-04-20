@@ -1,5 +1,5 @@
 <?php
-class FillingPostType {
+class KBPSFillingPostType {
     public function __construct() {
         add_action('init', array($this, 'register_post_type'));
         add_action('admin_menu', array($this, 'add_submenu'));

@@ -1,0 +1,10 @@
+/*WOOCOMMERCE*/
+
+.add_to_cart_button {
+    /*background-color: var(--kbps-global-color-main);*/
+    background-color: #fc1717;
+}
+
+.woocommerce-Price-amount {
+    color: var(--kbps-global-color-secondary);
+}

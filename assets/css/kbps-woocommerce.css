@@ -1,8 +1,12 @@
 /*WOOCOMMERCE*/
 
-.add_to_cart_button {
-    /*background-color: var(--kbps-global-color-main);*/
-    background-color: #fc1717;
+.woocommerce a.button  {
+    color: var(--kbps-global-color-text-white);
+    background-color: var(--kbps-global-color-main);
+}
+.woocommerce a.button:hover  {
+    color: var(--kbps-global-color-text-white);
+    background-color: var(--kbps-global-color-secondary);
 }
 
 .woocommerce-Price-amount {

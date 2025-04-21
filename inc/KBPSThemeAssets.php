@@ -73,6 +73,14 @@ class KBPSThemeAssets {
         wp_enqueue_script('to-top-button', KBPS_THEME_URI . '/assets/js/to-top-button.js', array(), '1.0', true);
         
         wp_enqueue_script(
+            'kbps-front-page',
+            get_template_directory_uri() . '/assets/js/front-page.js',
+            array(),
+            '1.0.1',
+            true
+        );
+
+        wp_enqueue_script(
             'kbps-cake-order',
             get_template_directory_uri() . '/assets/js/cake-order.js',
             array(),

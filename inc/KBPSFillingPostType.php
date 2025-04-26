@@ -2,7 +2,6 @@
 class KBPSFillingPostType {
     public function __construct() {
         add_action('init', array($this, 'register_post_type'));
-        add_action('admin_menu', array($this, 'add_submenu'));
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post_filling', array($this, 'save_meta'));
     }
@@ -35,16 +34,6 @@ class KBPSFillingPostType {
         );
 
         register_post_type('filling', $args);
-    }
-
-    public function add_submenu() {
-        add_submenu_page(
-            'kbps_menu', // Родительское меню KBPS
-            __('Fillings', 'kbps'),
-            __('Fillings', 'kbps'),
-            'manage_options',
-            'edit.php?post_type=filling'
-        );
     }
 
     public function add_meta_boxes() {

@@ -3,7 +3,6 @@ class KBPSCakePostType {
     public function __construct() {
         add_action('init', array($this, 'register_post_type'));
         add_action('init', array($this, 'register_taxonomy'));
-        add_action('admin_menu', array($this, 'add_submenu'));
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post_cake', array($this, 'save_meta'));
         add_action('init', array($this, 'add_default_term'));
@@ -76,16 +75,6 @@ class KBPSCakePostType {
         if (!term_exists('Svatební dort', 'cake_type')) {
             wp_insert_term('Svatební dort', 'cake_type');
         }
-    }
-
-    public function add_submenu() {
-        add_submenu_page(
-            'kbps_menu',
-            __('Cakes', 'kbps'),
-            __('Cakes', 'kbps'),
-            'manage_options',
-            'edit.php?post_type=cake'
-        );
     }
 
     public function enqueue_scripts($hook) {

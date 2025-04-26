@@ -250,13 +250,12 @@ class KBPSCakePostManager {
 
 		$models_option = get_option('kbps_front_cake_models', '');
 		
-
 		$requested_models = [];
 		if (!empty($models_option)) {
 			$requested_models = array_map('trim', explode(',', $models_option));
-			$requested_models = array_slice($requested_models, 0, 4); // Берем только первые 4
+			$requested_models = array_slice($requested_models, 0, 4);
 		}
-
+		
 		if (empty($requested_models)) {
 			$query = new WP_Query([
 				'post_type' => 'cake',

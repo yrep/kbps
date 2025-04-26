@@ -109,6 +109,10 @@
 
 
 /* Front page */
+.wedding-block {
+  height: 600px;
+}
+
 
 /* Block-1 Desktop */
 .wedding-block.block-1 {
@@ -117,7 +121,6 @@
     gap: 1rem;
     width: 100%;
     max-height: 1200px;
-    height: auto;
     box-sizing: border-box;
 }
 
@@ -295,6 +298,165 @@
 
 
 
+/* Block-3 Desktop */
+
+.cake-card__model-number {
+    transition: background-color 0.3s ease-in-out 0.1s;
+  }
+  
+  .wedding-block__big-photo-wrapper:hover .cake-card__model-number {
+    background-color: var(--kbps-global-color-main);
+  }
+
+
+.wedding-block.block-3 {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-height: 50vw;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-3.photo-1 {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-3.photo-1 img {
+    object-fit: contain;
+    width: auto;
+    max-height: 100%;
+  }
+
+  .wedding-block__big-photo-wrapper.block-3 {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .wedding-block__big-photo-wrapper.block-3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-3.photo-2 {
+    grid-column: 3;
+    grid-row: 2;
+    height: 100%;
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: flex-start;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-3.photo-2 img {
+    object-fit: contain;
+    width: auto;
+    max-height: 100%;
+  }
+  
+  .wedding-block__text-wrapper.block-3 {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+.wedding-block__text {
+    font-size: x-small;
+    font-weight: 200;
+    line-height: 1.7;
+}
+
+
+
+
+
+
+
+/* Block-4 Desktop */
+
+.cake-card__model-number {
+    transition: background-color 0.3s ease-in-out 0.1s;
+  }
+  
+  .wedding-block__big-photo-wrapper:hover .cake-card__model-number {
+    background-color: var(--kbps-global-color-main);
+  }
+
+
+.wedding-block.block-4 {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-height: 50vw;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-4.photo-1 {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-4.photo-1 img {
+    object-fit: contain;
+    width: auto;
+    max-height: 100%;
+  }
+
+  .wedding-block__big-photo-wrapper.block-4 {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .wedding-block__big-photo-wrapper.block-4 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-4.photo-2 {
+    grid-column: 3;
+    grid-row: 2;
+    height: 100%;
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: flex-start;
+  }
+  
+  .wedding-block__small-photo-wrapper.block-4.photo-2 img {
+    object-fit: contain;
+    width: auto;
+    max-height: 100%;
+  }
+  
+  .wedding-block__text-wrapper.block-4 {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+.wedding-block__text {
+    font-size: x-small;
+    font-weight: 200;
+    line-height: 1.7;
+}
 
 
 

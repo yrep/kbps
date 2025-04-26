@@ -2,7 +2,6 @@
 class KBPSCakeRequestPostType {
     public function __construct() {
         add_action('init', array($this, 'register_post_type'));
-        add_action('admin_menu', array($this, 'add_submenu'));
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post_cake_request', array($this, 'save_meta_box_data'));
         add_filter('wp_insert_post_data', array($this, 'set_default_post_status'), 10, 2);
@@ -49,16 +48,6 @@ class KBPSCakeRequestPostType {
         );
 
         register_post_type('cake_request', $args);
-    }
-
-    public function add_submenu() {
-        add_submenu_page(
-            'kbps_menu',
-            __('Cake Requests', 'kbps'),
-            __('Cake Requests', 'kbps'),
-            'manage_options',
-            'edit.php?post_type=cake_request'
-        );
     }
 
     public function add_meta_boxes() {

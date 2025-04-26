@@ -76,6 +76,9 @@ add_filter('single_template', function($template) {
     return $template;
 });
 
+
+//sm('Test');
+
 /* Log template
 add_filter('template_include', function($template) {
 

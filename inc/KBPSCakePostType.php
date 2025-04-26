@@ -8,6 +8,10 @@ class KBPSCakePostType {
         add_action('save_post_cake', array($this, 'save_meta'));
         add_action('init', array($this, 'add_default_term'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
+        // Copy post
+        add_action('admin_action_kbps_duplicate_cake', [$this, 'duplicate_cake']);
+        add_filter('post_row_actions', [$this, 'add_duplicate_action'], 10, 2);
+        add_action('post_submitbox_misc_actions', [$this, 'add_duplicate_button']);
     }
 
     public function register_post_type() {
@@ -231,4 +235,100 @@ class KBPSCakePostType {
             update_post_meta($post_id, 'kbps_available_fillings', '');
         }
     }
+
+
+    
+        /**
+         * Copy Cake Post
+         */
+    public function duplicate_cake() {
+        if (empty($_REQUEST['post'])) {
+            wp_die('Не выбрана запись для копирования');
+        }
+
+        $post_id = absint($_REQUEST['post']);
+        check_admin_referer('kbps_duplicate_' . $post_id);
+
+        $post = get_post($post_id);
+        if (!$post || $post->post_type !== 'cake') {
+            wp_die('Ошибка: запись не найдена или не является тортом');
+        }
+
+        $current_user = wp_get_current_user();
+        $new_post = [
+            'post_title'    => $post->post_title . ' (Копия)',
+            'post_status'   => 'draft',
+            'post_type'     => 'cake',
+            'post_author'  => $current_user->ID,
+        ];
+
+        $new_post_id = wp_insert_post($new_post);
+
+        // Копируем метаданные
+        $meta_keys = [
+            'kbps_model', 'kbps_description', 'kbps_ingredients',
+            'kbps_finishing', 'kbps_decoration', 'kbps_tiers',
+            'kbps_shape', 'kbps_gallery', 'kbps_available_fillings'
+        ];
+
+        foreach ($meta_keys as $key) {
+            $value = get_post_meta($post_id, $key, true);
+            if ($value !== '') {
+                update_post_meta($new_post_id, $key, $value);
+            }
+        }
+
+        // Копируем таксономии
+        $taxonomies = get_object_taxonomies('cake');
+        foreach ($taxonomies as $taxonomy) {
+            $terms = wp_get_object_terms($post_id, $taxonomy, ['fields' => 'slugs']);
+            wp_set_object_terms($new_post_id, $terms, $taxonomy, false);
+        }
+
+        // Копируем миниатюру
+        $thumbnail_id = get_post_thumbnail_id($post_id);
+        if ($thumbnail_id) {
+            set_post_thumbnail($new_post_id, $thumbnail_id);
+        }
+
+        wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+        exit;
+    }
+
+    /**
+     * Copy action
+     */
+    public function add_duplicate_action($actions, $post) {
+        if ($post->post_type === 'cake' && current_user_can('edit_posts')) {
+            $actions['duplicate'] = sprintf(
+                '<a href="%s" aria-label="%s">%s</a>',
+                wp_nonce_url(admin_url('admin.php?action=kbps_duplicate_cake&post=' . $post->ID), 'kbps_duplicate_' . $post->ID),
+                esc_attr__('Make copy of Cake post', 'kbps'),
+                esc_html__('Copy cake', 'kbps')
+            );
+        }
+        return $actions;
+    }
+
+    /**
+     * Button Copy
+     */
+    public function add_duplicate_button() {
+        global $post;
+        if ($post && $post->post_type === 'cake' && current_user_can('edit_posts')) {
+            printf(
+                '<div class="misc-pub-section" style="padding: 8px 0 10px;">
+                    <a href="%s" class="button button-secondary">%s</a>
+                </div>',
+                wp_nonce_url(admin_url('admin.php?action=kbps_duplicate_cake&post=' . $post->ID), 'kbps_duplicate_' . $post->ID),
+                esc_html__('Создать копию', 'kbps')
+            );
+        }
+    }
+
+
 }
+
+
+
+

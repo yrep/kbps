@@ -17,6 +17,7 @@ $required_files = [
     'helpers/KBPSLogger.php',
     'helpers/KBPSDebugMessage.php',
     'inc/KBPSThemeSetup.php',
+    'inc/KBPSAdmin.php',
     'inc/KBPSThemeAssets.php',
     'inc/KBPSPageManager.php',
     'inc/KBPSThemeCore.php',
@@ -39,23 +40,10 @@ foreach ($required_files as $file) {
     }
 }
 
-
-// Main left menu item
-add_action('admin_menu', function() {
-    add_menu_page(
-        __('KBPS', 'kbps'),
-        __('KBPS', 'kbps'),
-        'manage_options',
-        'kbps_menu',
-        null,
-        'dashicons-store',
-        20
-    );
-});
-
 global $kbpsCore, $kbpsSetup, $kbpsAssets, $kbpsAjax;
 $kbpsCore = new KBPSThemeCore();
 $kbpsSetup = new KBPSThemeSetup();
+$KBPSAdmin = new KBPSAdmin();
 $kbpsAssets = new KBPSThemeAssets();
 $kbpsAjax = new KBPSAjax();
 $kbpsCakeRequest = new KBPSCakeRequestPostType();
@@ -98,3 +86,15 @@ add_filter('template_include', function($template) {
     return $template;
 }, 1000);
 */
+
+// Cake image size in slider
+add_filter('kbps_cake_image_size', function($size, $post_id) {
+    return is_front_page() ? 'woocommerce_thumbnail' : 'large';
+}, 10, 2);
+
+
+// global $_wp_additional_image_sizes;
+// echo '<pre>';
+// print_r($_wp_additional_image_sizes);
+// echo '</pre>';
+

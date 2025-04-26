@@ -64,7 +64,21 @@ class KBPSThemeAssets {
             [],
             filemtime(KBPS_THEME_DIR . 'assets/css/kbps-woocommerce.css')
         );
+
+        wp_enqueue_style(
+            'swiper',
+            KBPS_THEME_URI . 'assets/css/swiper.min.css',
+            [],
+            filemtime(KBPS_THEME_DIR . 'assets/css/swiper.min.css')
+        );
         
+        // Components
+        wp_enqueue_style(
+            'cake-components',
+            KBPS_THEME_URI . 'assets/css/components.css',
+        );
+
+
     }
 
 
@@ -96,6 +110,61 @@ class KBPSThemeAssets {
                 'nonce' => wp_create_nonce('kbps_order_nonce')
             )
         );
+
+        wp_enqueue_script(
+            'swiper',
+            get_template_directory_uri() . '/assets/js/swiper.min.js',
+            [],
+            null,
+            true
+        );
+        
+        // Swiper init
+        wp_add_inline_script('swiper', '
+            document.addEventListener("DOMContentLoaded", function() {
+                const sliders = document.querySelectorAll(".cake-slider");
+                
+                sliders.forEach(slider => {
+                    new Swiper(slider, {
+                        loop: true,
+                        speed: 600,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        slidesPerView: 5,
+                        centeredSlides: true,
+                        spaceBetween: 30,
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                        },
+                        pagination: {
+                            el: ".swiper-pagination",
+                            clickable: true,
+                        },
+                        breakpoints: {
+                            150: {
+                            slidesPerView: 1,
+                            spaceBetween: 0,
+                            },
+                            269: {
+                            slidesPerView: 2,
+                            spaceBetween: 5,
+                            },
+                            768: {
+                            slidesPerView: 3,
+                            spaceBetween: 20,
+                            },
+                            1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 40,
+                            },
+                        },
+                    });
+                });
+            });
+        ');
 
 }
 

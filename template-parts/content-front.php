@@ -45,4 +45,18 @@
     
 
     </div> <!-- wedding-block-wrapper -->
+
+<?php //SLIDER
+    $cakes = KBPSCakePostManager::getCakesForSlider([
+        'posts_per_page' => 6,
+        'order' => 'ASC'
+    ]);
+
+    get_template_part('template-parts/components/cake-slider', null, [
+        'cakes'    => $cakes,
+        'autoplay' => true
+    ]);
+?>
+
+
 </section>

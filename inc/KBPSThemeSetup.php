@@ -1,7 +1,7 @@
 <?php
 class KBPSThemeSetup {
     public function __construct() {
-        // Высокий приоритет для гарантированного выполнения
+        // High priority
         add_action('after_setup_theme', [$this, 'theme_setup'], 1);
         
         add_action('customize_register', [$this, 'kbps_register_customizer_settings'], 20);
@@ -28,7 +28,7 @@ class KBPSThemeSetup {
 
     public function theme_setup() {
         $this->kbps_register_menus();
-        $this->kbps_add_theme_support(); // Переносим сюда!
+        $this->kbps_add_theme_support();
     }
 
     public function kbps_register_menus() {
@@ -38,7 +38,6 @@ class KBPSThemeSetup {
     }
 
     public function kbps_add_theme_support() {
-        // Явно включаем логотип ДО кастомайзера
         add_theme_support('custom-logo', [
             'height'      => 100,
             'width'       => 300,

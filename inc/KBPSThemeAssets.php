@@ -4,6 +4,8 @@ class KBPSThemeAssets {
         add_filter('woocommerce_enqueue_styles', '__return_empty_array');
         //add_filter('woocommerce_should_load_block_theme_styles', '__return_false');
         add_action('wp_enqueue_scripts', [$this, 'enqueueStyles'], 100);
+        add_filter('wp_enqueue_scripts', [$this, 'kbps_enqueue_cake_styles'], 100);
+        add_filter('wp_enqueue_scripts', [$this, 'kbps_enqueue_cake_script'], 100);
         add_action('wp_enqueue_scripts', [$this, 'enqueueFontAwesome']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts'], 101);
     }
@@ -84,7 +86,41 @@ class KBPSThemeAssets {
             'cake-components',
             KBPS_THEME_URI . 'assets/css/components.css',
         );
+
     }
+
+
+    function kbps_enqueue_cake_styles() {
+        if ( is_singular('cake') ) {
+            wp_enqueue_style(
+                'cake-page-styles',
+                KBPS_THEME_URI . 'assets/css/cake-page.css',
+                array(),
+                null
+            );
+        }
+    }
+
+
+    function kbps_enqueue_cake_script() {
+        if ( is_singular('cake') ) {
+            wp_enqueue_script(
+                'cake-page-styles',
+                KBPS_THEME_URI . 'assets/js/cake-page.js',
+                array(),
+                null,
+                true
+            );
+
+            wp_localize_script(
+                'cake-page-styles',
+                'kbps_ajax_object',
+                array( 'ajax_url' => admin_url( 'admin-ajax.php' ) )
+            );
+        }
+    }
+
+
 
     public function enqueueScripts() {
         wp_enqueue_script('custom-menu', KBPS_THEME_URI . '/assets/js/mobile-menu.js', array(), '1.0', true);

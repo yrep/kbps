@@ -8,11 +8,12 @@ $term = get_queried_object();
     </header>
 
     <div class="cake-archive">
-        <?php if (have_posts()) : while (have_posts()) : the_post(); 
+        <?php if (have_posts()) : while (have_posts()) : the_post();
             $model = get_post_meta(get_the_ID(), 'kbps_model', true);
-            $filling_ids = get_post_meta(get_the_ID(), 'kbps_available_fillings', true);
-            $filling_ids = $filling_ids ? explode(',', $filling_ids) : [];
-            $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: '';
+            // Нам больше не нужны filling_ids и thumbnail здесь для встроенного модального окна
+            // $filling_ids = get_post_meta(get_the_ID(), 'kbps_available_fillings', true);
+            // $filling_ids = $filling_ids ? explode(',', $filling_ids) : [];
+            $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: ''; // Оставляем получение thumbnail для фона div
         ?>
             <div class="cake-card" data-cake-id="<?php the_ID(); ?>">
                 <a href="<?php the_permalink(); ?>" class="cake-image-link">
@@ -21,28 +22,10 @@ $term = get_queried_object();
                 <button class="model-number" data-model="<?php echo esc_attr($model); ?>">
                     <?php echo esc_html($model); ?>
                 </button>
-                <div class="cake-modal" style="display: none;">
-                    <div class="modal-content">
-                        <span class="modal-close">×</span>
-                        <h2><?php the_title(); ?></h2>
-                        <?php if ($thumbnail) : ?>
-                            <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title_attribute(); ?>" style="max-width: 100px; height: auto;">
-                        <?php endif; ?>
-                        <h3><?php _e('Select Filling', 'kbps'); ?></h3>
-                        <ul class="filling-list">
-                            <?php foreach ($filling_ids as $filling_id) : 
-                                $filling = get_post($filling_id);
-                                if ($filling) :
-                            ?>
-                                <li>
-                                    <a href="<?php echo esc_url(add_query_arg('filling_id', $filling_id, get_permalink())); ?>">
-                                        <?php echo esc_html($filling->post_title); ?>
-                                    </a>
-                                </li>
-                            <?php endif; endforeach; ?>
-                        </ul>
-                    </div>
-                </div>
+                <?php
+                    // Удалена HTML структура встроенного модального окна
+                    // <div class="cake-modal" style="display: none;"> ... </div>
+                ?>
             </div>
         <?php endwhile; else : ?>
             <p><?php _e('No cakes found.', 'kbps'); ?></p>
@@ -52,6 +35,7 @@ $term = get_queried_object();
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // JavaScript для кнопки копирования номера модели
     document.querySelectorAll('.model-number').forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
@@ -62,36 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    <?php
+        // Удален JavaScript, связанный с открытием/закрытием встроенных модальных окон:
+        // document.querySelectorAll('.cake-image-link').forEach(link => { ... });
+        // document.querySelectorAll('.modal-close').forEach(close => { ... });
+        // document.querySelectorAll('.cake-modal').forEach(modal => { ... });
+    ?>
 
-    document.querySelectorAll('.cake-image-link').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const card = this.closest('.cake-card');
-            const modal = card.querySelector('.cake-modal');
-            if (modal) {
-                modal.style.display = 'block';
-            }
-        });
-    });
-
-
-    document.querySelectorAll('.modal-close').forEach(close => {
-        close.addEventListener('click', function() {
-            const modal = this.closest('.cake-modal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        });
-    });
-
-
-    document.querySelectorAll('.cake-modal').forEach(modal => {
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    });
+    // Стандартное поведение ссылки .cake-image-link теперь не перехватывается,
+    // поэтому она будет вести на страницу поста торта по своему href.
 });
 </script>
 

@@ -27,6 +27,7 @@ $required_files = [
     'inc/KBPSFillingPostType.php',
     'inc/KBPSCakePostManager.php',
     'inc/KBPSStaticPhotoManager.php',
+    'inc/KBPSFillingPostManager.php',
 ];
 
 
@@ -49,6 +50,7 @@ $kbpsAjax = new KBPSAjax();
 $kbpsCakeRequest = new KBPSCakeRequestPostType();
 $kbpsCake = new KBPSCakePostType();
 $kbpsFilling = new KBPSFillingPostType();
+
 
 
 //sm('Test debug message'));

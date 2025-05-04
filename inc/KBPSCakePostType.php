@@ -40,6 +40,7 @@ class KBPSCakePostType {
             'supports'           => ['title', 'editor', 'thumbnail', 'custom-fields'],
             //'supports'           => array('title', 'editor', 'thumbnail'),
             'show_in_rest'       => true,
+            'has_archive'        => true,
             'taxonomies'         => array('cake_type'),
         );
 

@@ -3,8 +3,35 @@ class KBPSAjax {
     public function __construct() {
         add_action('wp_ajax_kbps_process_order_form', array($this, 'process_order_form'));
         add_action('wp_ajax_nopriv_kbps_process_order_form', array($this, 'process_order_form'));
+        add_action( 'wp_ajax_get_filling_data',  array($this, 'kbps_ajax_get_filling_data' ));
+        add_action( 'wp_ajax_nopriv_get_filling_data',  array($this, 'kbps_ajax_get_filling_data' ));
     }
 
+    
+    
+    /**
+     * AJAX-filling data.
+     */
+    function kbps_ajax_get_filling_data() {
+        if ( empty( $_POST['filling_id'] ) ) {
+            wp_send_json_error( 'Filling ID is required.' );
+        }
+
+        $filling_id = absint( $_POST['filling_id'] );
+
+        $filling_data = KBPSFillingPostManager::getFillingDataById( $filling_id );
+
+        if ( $filling_data ) {
+            wp_send_json_success( $filling_data );
+        } else {
+            wp_send_json_error( 'Filling is not found.' );
+        }
+        wp_die();
+    }
+    
+    
+    
+    
     public function process_order_form() {
         // Проверка nonce
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'kbps_order_nonce')) {

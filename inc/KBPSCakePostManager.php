@@ -234,7 +234,7 @@ class KBPSCakePostManager {
 		$imageUrl = KBPS_THEME_URI . 'assets/images/placeholders/cake_placeholder.png';
 	
 		if (has_post_thumbnail($post->ID)) {
-			$imageUrl = get_the_post_thumbnail_url($post->ID, 'large'); // Используем large для лучшего качества
+			$imageUrl = get_the_post_thumbnail_url($post->ID, 'medium'); // Используем large для лучшего качества
 		}
 		?>
 		<a href="<?php echo esc_url($postLink); ?>">
@@ -247,50 +247,55 @@ class KBPSCakePostManager {
 
 
 	public static function getFrontPageCakes() {
-
 		$models_option = get_option('kbps_front_cake_models', '');
-		
 		$requested_models = [];
+	
 		if (!empty($models_option)) {
 			$requested_models = array_map('trim', explode(',', $models_option));
 			$requested_models = array_slice($requested_models, 0, 4);
 		}
-		
-		if (empty($requested_models)) {
-			$query = new WP_Query([
-				'post_type' => 'cake',
-				'posts_per_page' => 4,
-				'orderby' => 'meta_value_num',
-				'meta_key' => 'kbps_model',
-				'order' => 'ASC'
-			]);
-			
-			if ($query->have_posts()) {
-				return $query->posts;
-			}
-			return [];
-		}
-		
-		$meta_query = [];
-		foreach ($requested_models as $model) {
-			$meta_query[] = [
-				'key' => 'kbps_model',
-				'value' => $model
-			];
-		}
-		
-		$query = new WP_Query([
+	
+		$query_args = [
 			'post_type' => 'cake',
 			'posts_per_page' => 4,
-			'meta_query' => [
-				'relation' => 'OR',
-				...$meta_query
-			],
 			'orderby' => 'meta_value_num',
 			'meta_key' => 'kbps_model'
-		]);
-		
-		return $query->have_posts() ? $query->posts : [];
+		];
+	
+		if (!empty($requested_models)) {
+			$meta_query = [];
+			foreach ($requested_models as $model) {
+				$meta_query[] = [
+					'key' => 'kbps_model',
+					'value' => $model
+				];
+			}
+	
+			$query_args['meta_query'] = [
+				'relation' => 'OR',
+				...$meta_query
+			];
+		}
+	
+		$query = new WP_Query($query_args);
+	
+		$results = [];
+	
+		if ($query->have_posts()) {
+			foreach ($query->posts as $post) {
+				$thumbnail_url = get_the_post_thumbnail_url($post->ID, 'large');
+				$results[] = [
+					'ID' => $post->ID,
+					'model' => $post->kbps_model,
+					'title' => get_the_title($post),
+					'permalink' => get_permalink($post),
+					'thumbnail' => $thumbnail_url
+				];
+			}
+		}
+	
+		return $results;
 	}
+	
 
 }

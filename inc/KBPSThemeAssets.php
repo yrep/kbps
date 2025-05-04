@@ -57,6 +57,13 @@ class KBPSThemeAssets {
             array('kbps-core-reset'),
             filemtime(KBPS_THEME_DIR . 'assets/css/main-styles.css')
         );
+        
+        wp_enqueue_style(
+            'kbps-front-wedding',
+            KBPS_THEME_URI . 'assets/css/front_wedding_blocks.css',
+            array('kbps-core-reset'),
+            filemtime(KBPS_THEME_DIR . 'assets/css/front_wedding_blocks.css')
+        );
 
         wp_enqueue_style(
             'kbps-woocommerce',

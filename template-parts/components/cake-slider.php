@@ -23,23 +23,34 @@ if (empty($data['cakes'])) {
 }
 ?>
 
-<div class="cake-slider swiper" data-autoplay="<?php echo $data['autoplay'] ? 'true' : 'false'; ?>">
-    <div class="swiper-wrapper">
-        <?php foreach ($data['cakes'] as $cake) : ?>
-            <div class="swiper-slide">
-                <?php 
-                get_template_part('template-parts/components/cake-card', null, [
-                    'id'    => $cake['id'],
-                    'title' => $cake['title'],
-                    'link'  => $cake['link'],
-                    'image' => $cake['image'],
-                    'model' => $cake['model']
-                ]); ?>
-            </div>
-        <?php endforeach; ?>
+<div class="cake-slider-container">
+    <div class="cake-slider swiper">
+        <div class="swiper-wrapper">
+            <?php
+            $cakes = $data['cakes'];
+            $slide_count = count($cakes);
+            $min_slides = 9;
+            
+            if ($slide_count > 0) {
+                $total_needed = max($min_slides, $slide_count);
+                for ($i = 0; $i < $total_needed; $i++) {
+                    $cake = $cakes[$i % $slide_count];
+                    echo '<div class="swiper-slide">';
+                    get_template_part('template-parts/components/cake-card', null, [
+                        'id'    => $cake['id'],
+                        'title' => $cake['title'],
+                        'link'  => $cake['link'],
+                        'image' => $cake['image'],
+                        'model' => $cake['model']
+                    ]);
+                    echo '</div>';
+                }
+            }
+            ?>
+        </div>
+        
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
-    
-    <div class="swiper-pagination"></div>
-    
-
 </div>

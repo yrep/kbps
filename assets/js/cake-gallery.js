@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Открытие медиабиблиотеки
+
     uploadButton.addEventListener('click', function(event) {
         event.preventDefault();
 
-        // Создаем или открываем медиабиблиотеку
         if (galleryFrame) {
             galleryFrame.open();
             return;
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Обработка выбора изображений
         galleryFrame.on('select', function() {
             const selection = galleryFrame.state().get('selection');
             const imageIds = [];
@@ -54,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryFrame.open();
     });
 
-    // Удаление изображения из галереи
     previewContainer.addEventListener('click', function(event) {
         if (event.target.classList.contains('kbps-gallery-remove')) {
             const imageContainer = event.target.closest('.kbps-gallery-image');

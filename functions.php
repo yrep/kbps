@@ -92,7 +92,7 @@ add_filter('template_include', function($template) {
 
 // Cake image size in slider
 add_filter('kbps_cake_image_size', function($size, $post_id) {
-    return is_front_page() ? 'woocommerce_thumbnail' : 'large';
+    return is_front_page() ? 'medium' : 'large';
 }, 10, 2);
 
 

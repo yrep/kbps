@@ -9,9 +9,9 @@
     width: 100%;
     box-sizing: border-box;
     margin-top: 2rem;
-    margin-bottom: 2rem;
-    height: 800px;
-    max-height: 70vh;
+    margin-bottom: 4rem;
+    min-height: 500px;
+    height: 60vh;
     overflow: hidden;
 }
 
@@ -22,45 +22,171 @@
 .wedding-block__big-photo-wrapper img {
     display: block;
     height: 100%;
-    width: 100%;
     object-fit: cover;
 }
 
 .wedding-block__small-photo-wrapper img {
     display: block;
     height: 100%;
-    width: 100%;
     object-fit: cover;
 }
 
-.wedding-block {
+.wedding-block{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 }
 
-.wedding-block__big-photo-wrapper {
-    grid-column: span 2;
-    grid-row: span 2;
-    overflow: hidden;
-}
-
-.wedding-block__small-photo-wrapper.photo-1 {
-    grid-column: 3;
-    grid-row: 1;
-    overflow: hidden;
-}
-
-.wedding-block__small-photo-wrapper.photo-2 {
-    grid-column: 3;
-    grid-row: 2;
-    overflow: hidden;
-}
-
+.wedding-block__big-photo-wrapper,
+.wedding-block__small-photo-wrapper.photo-1, 
+.wedding-block__small-photo-wrapper.photo-2,
 .wedding-block__text-wrapper {
     overflow: hidden;
+}
+
+.wedding-block__text-wrapper p {
+    font-weight: 200;
+    font-size: medium;
+}
+
+/*BLOCK 1*/
+.wedding-block.block-1{
+    display: grid;
+    grid-template-columns: 36% 22% 42%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+    "big small-1 ."
+    "big .       text";
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper.block-1 {
+    grid-area: big;
+}
+
+.wedding-block__small-photo-wrapper.photo-1.block-1 {
+    grid-area: small-1;
+}
+
+.wedding-block__text-wrapper.block-1 {
+    grid-area: text;
+}
+
+
+
+/*BLOCK 2*/
+.wedding-block.block-2{
+    display: grid;
+    grid-template-columns: 32% 38% 30%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+    "small-1 big  ."
+    "text    big  small-2";
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper.block-2 {
+    grid-area: big;
+}
+
+.wedding-block__small-photo-wrapper.photo-1.block-2 {
+    grid-area: small-1;
+}
+
+.wedding-block__small-photo-wrapper.photo-2.block-2 {
+    grid-area: small-2;
+}
+
+.wedding-block__text-wrapper.block-2 {
+    grid-area: text;
+    align-self: end;
+}
+
+
+/*BLOCK 3*/
+.wedding-block.block-3{
+    display: grid;
+    grid-template-columns: 50% 20% 30%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+    "big  small-1  ."
+    "big .         small-2";
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper.block-3 {
+    grid-area: big;
+    justify-self: end;
+
+}
+
+.wedding-block__small-photo-wrapper.photo-1.block-3 {
+    grid-area: small-1;
+}
+
+.wedding-block__small-photo-wrapper.photo-2.block-3 {
+    grid-area: small-2;
+}
+
+.wedding-block__text-wrapper.block-3 {
+    grid-area: text;
+}
+
+.wedding-block__small-photo-wrapper.photo-2.block-3 img {
+    display: block;
+    height: unset;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/*BLOCK 4*/
+.wedding-block.block-4{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+    "small-1  big   text"
+    ".        big   small-2";
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.wedding-block__big-photo-wrapper.block-4 {
+    grid-area: big;
+    justify-self: right;
+    
+}
+
+.wedding-block__small-photo-wrapper.photo-1.block-4 {
+    grid-area: small-1;
+    justify-self: center;
+}
+
+.wedding-block__small-photo-wrapper.photo-2.block-4 {
+    grid-area: small-2;
+}
+
+.wedding-block__text-wrapper.block-4 {
+    grid-area: text;
+}
+
+.wedding-block__small-photo-wrapper.photo-2.block-4 img {
+    display: block;
+    height: unset;
+    width: 100%;
+    object-fit: cover;
 }

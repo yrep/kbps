@@ -84,23 +84,12 @@ class KBPSThemeAssets {
             'cake-components',
             KBPS_THEME_URI . 'assets/css/components.css',
         );
-
-
     }
-
 
     public function enqueueScripts() {
         wp_enqueue_script('custom-menu', KBPS_THEME_URI . '/assets/js/mobile-menu.js', array(), '1.0', true);
         wp_enqueue_script('to-top-button', KBPS_THEME_URI . '/assets/js/to-top-button.js', array(), '1.0', true);
         
-        wp_enqueue_script(
-            'kbps-front-page',
-            get_template_directory_uri() . '/assets/js/front-page.js',
-            array(),
-            '1.0.1',
-            true
-        );
-
         wp_enqueue_script(
             'kbps-cake-order',
             get_template_directory_uri() . '/assets/js/cake-order.js',
@@ -108,7 +97,7 @@ class KBPSThemeAssets {
             '1.0.1',
             true
         );
- 
+
         wp_localize_script(
             'kbps-cake-order',
             'kbpsAjax',
@@ -120,61 +109,20 @@ class KBPSThemeAssets {
 
         wp_enqueue_script(
             'swiper',
-            get_template_directory_uri() . '/assets/js/swiper.min.js',
+            get_template_directory_uri() . '/assets/js/swiper-bundle.min.js',
             [],
             null,
             true
         );
-        
-        // Swiper init
-        wp_add_inline_script('swiper', '
-            document.addEventListener("DOMContentLoaded", function() {
-                const sliders = document.querySelectorAll(".cake-slider");
-                
-                sliders.forEach(slider => {
-                    new Swiper(slider, {
-                        loop: true,
-                        speed: 600,
-                        autoplay: {
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        },
-                        slidesPerView: 5,
-                        centeredSlides: true,
-                        spaceBetween: 30,
-                        navigation: {
-                            nextEl: ".swiper-button-next",
-                            prevEl: ".swiper-button-prev",
-                        },
-                        pagination: {
-                            el: ".swiper-pagination",
-                            clickable: true,
-                        },
-                        breakpoints: {
-                            150: {
-                            slidesPerView: 1,
-                            spaceBetween: 0,
-                            },
-                            269: {
-                            slidesPerView: 2,
-                            spaceBetween: 5,
-                            },
-                            768: {
-                            slidesPerView: 3,
-                            spaceBetween: 20,
-                            },
-                            1024: {
-                            slidesPerView: 5,
-                            spaceBetween: 40,
-                            },
-                        },
-                    });
-                });
-            });
-        ');
 
+        wp_enqueue_script(
+            'kbps-front-page',
+            get_template_directory_uri() . '/assets/js/front-page.js',
+            array('swiper'),
+            '1.0.1',
+            true
+        );
 }
-
 
     public function enqueueFontAwesome() {
         wp_enqueue_style(

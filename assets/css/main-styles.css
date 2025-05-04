@@ -105,3 +105,31 @@
 }
 
 
+
+/*SLIDER*/
+
+.cake-card {
+    height: 30vh;
+    width: 100%;
+}
+
+.cake-card__link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.cake-card__image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cake-card__model {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+}

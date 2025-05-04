@@ -5,18 +5,22 @@ if (!defined('ABSPATH')) {
 }
 
 class KBPSStaticPhotoManager {
-    private static $base_uri = 'assets/images/wedding/';
+    private static $base_uri = 'assets/images/';
     private static $base_path;
 
     public static function getImage($filename) {
+
+        //kbps_log($filename);
         self::$base_path = KBPS_THEME_DIR . self::$base_uri;
-        $full_path = self::$base_path . $filename;
-
-        kbps_log($full_path);
-
+        
+        $imageSubDir = strtok($filename, '_');
+        
+        $full_path = self::$base_path . $imageSubDir . "/" . $filename;
+        //kbps_log('File path: ' . $full_path);
         if (file_exists($full_path)) {
-            kbps_log('File exists');
-            $image_url = KBPS_THEME_URI . self::$base_uri . $filename;
+            
+            $image_url = KBPS_THEME_URI . self::$base_uri . $imageSubDir . "/" . $filename;
+            //kbps_log($image_url);
             echo '<img src="' . esc_url($image_url) . '" alt="wedding photo" class="kbps-thumbnail">';
             return;
         }

@@ -83,16 +83,14 @@ global $kbpsCore;
             </div>
 
             <!-- Лого -->
-            <div class="kbps-logo-container">
-                <div class="kbps-logo">
-                    <?php if (has_custom_logo()) : ?>
-                        <?php echo str_replace('logo.svg', 'logo-white.svg', get_custom_logo()); ?>
-                    <?php else : ?>
-                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                            <h1><?php bloginfo('name'); ?></h1>
-                        </a>
-                    <?php endif; ?>
-                </div>
+            <div class="kbps-logo">
+                <?php if (has_custom_logo()) : ?>
+                    <?php the_custom_logo(); ?>
+                <?php else : ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                        <h1><?php bloginfo('name'); ?></h1>
+                    </a>
+                <?php endif; ?>
             </div>
 
             <!-- Меню -->

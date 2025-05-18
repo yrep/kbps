@@ -1,0 +1,409 @@
+.kbps-header-desktop {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    padding: 20px 20px 10px;
+    transition: padding-bottom 0.3s ease;
+}
+
+.kbps-header-container {
+    max-width: var(--max-content-width);
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kbps-menu-content {
+    position: static;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    transition: none;
+    background: none;
+    box-shadow: none;
+    z-index: auto;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+    max-width: calc(100vw - 20px);
+    z-index: 999;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu.open .kbps-menu-content {
+    opacity: 1;
+    max-height: var(--menu-max-height, 300px);
+    padding: 10px;
+    transform: translateY(0);
+}
+
+.kbps-header-desktop.scrolled .kbps-menu.open .kbps-menu-vertical {
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    transition: none;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu.open .kbps-menu-vertical li {
+    padding: 0;
+    margin: 0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu.open .kbps-menu-vertical li:last-child {
+    margin-bottom: 0;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu.open .kbps-menu-vertical li a {
+    color: #000;
+    font-size: 1rem;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+}
+
+.menu-item {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    list-style: none !important;
+    line-height: normal !important;
+}
+
+.menu-item a {
+    font-size: x-small;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.kbps-menu-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 0;
+    margin: 0;
+    list-style: none;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    transition: none;
+}
+
+.kbps-header-desktop.scrolled .kbps-menu-vertical {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+    gap: 0;
+}
+
+.kbps-menu-title {
+    margin: 0 0 0 0;
+    text-transform: uppercase;
+    color: var(--kbps-global-color-main);
+    font-weight: 500;
+    font-size: 2.4rem;
+    transition: none !important;
+}
+
+.kbps-menu-title.scrolled {
+    cursor: pointer;
+}
+
+.kbps-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 64px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.kbps-logo.small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 54px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    height: 3rem;
+}
+
+.kbps-logo a {
+    height: 100%;
+    width: auto;
+}
+
+.kbps-logo img {
+    display: block !important;
+    object-fit: contain;
+    width: auto;
+    max-height: 100%;
+}
+
+.kbps-header-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.kbps-header-icon-container {
+    padding-top: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-items: flex-start;
+}
+
+.kbps-social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.kbps-social-icons a {
+    font-size: 2.4rem;
+    color: var(--kbps-global-color-main);
+}
+
+.kbps-social-icons a:hover {
+    color: var(--kbps-global-color-secondary);
+}
+
+.kbps-menu {
+    position: relative;
+    padding-left: 10px;
+    font-weight: 100;
+}
+
+.kbps-menu li.page_item {
+    color: var(--kbps-global-color-text);
+}
+
+.kbps-menu li.page_item:hover {
+    color: var(--kbps-global-color-main);
+}
+
+.kbps-menu li.current_page_item {
+    color: var(--kbps-global-color-main);
+    text-decoration: underline;
+}
+
+.kbps-cart {
+    position: relative;
+}
+
+.kbps-cart a {
+    padding-top: 2px;
+    font-size: 2rem;
+    color: var(--kbps-global-color-main);
+}
+
+.kbps-cart a:hover {
+    color: var(--kbps-global-color-secondary);
+}
+
+.kbps-cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff0000;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kbps-logo,
+.kbps-header-icon-container {
+    transition: none !important;
+}
+
+body {
+    padding-top: var(--header-height);
+}
+
+.kbps-header-mobile {
+    display: none;
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+    .kbps-header-desktop {
+        display: none;
+    }
+
+    .kbps-header-mobile {
+        display: block !important;
+        background-color: var(--kbps-global-color-main);
+    }
+
+    .kbps-header-mobile .kbps-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+
+    .kbps-header-mobile .kbps-header-container > * {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .kbps-social-icons {
+        display: flex;
+        flex-shrink: 1;
+        gap: 5px;
+    }
+
+    .kbps-social-icons a {
+        color: #fff;
+        margin: 0 0;
+        font-size: 2rem;
+    }
+
+    .kbps-header-mobile .kbps-logo-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-shrink: 1;
+    }
+
+    .kbps-header-mobile .kbps-logo {
+        padding-bottom: 0;
+        flex-shrink: 1;
+    }
+
+    .kbps-header-mobile .kbps-logo img {
+        max-width: 100%;
+        height: auto;
+        width: 80px;
+    }
+
+    .kbps-header-mobile .kbps-logo a {
+        color: #fff;
+    }
+
+    .kbps-header-mobile .kbps-menu {
+        position: relative;
+        flex-shrink: 1;
+    }
+
+    .kbps-header-mobile .kbps-menu-title {
+        font-weight: 300;
+        cursor: pointer;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        font-size: 2rem;
+    }
+
+    .kbps-header-mobile .kbps-menu-content {
+        position: absolute;
+        top: 100%;
+        right: -20;
+        width: auto;
+        min-width: 120px;
+        max-width: calc(100vw - 20px);
+        background: #fff;
+        color: #000;
+        max-height: 20px;
+        overflow: hidden;
+        transition:
+            max-height 0.3s ease-in-out,
+            opacity 0.3s ease;
+        opacity: 0;
+        z-index: 10;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .kbps-header-mobile .kbps-menu.open .kbps-menu-content {
+        position: absolute;
+        max-height: 100vh;
+        opacity: 1;
+        width: max-content;
+    }
+
+    .kbps-header-mobile .kbps-menu-vertical {
+        padding: 10px;
+        margin: 0;
+        list-style: none;
+        white-space: nowrap;
+    }
+
+    .kbps-header-mobile .kbps-menu-vertical li {
+        padding: 8px 16px;
+    }
+
+    .kbps-header-mobile .kbps-menu-vertical a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+    }
+
+    .kbps-header-mobile .kbps-header-icon-container {
+        flex-shrink: 1;
+    }
+
+    .kbps-header-mobile .kbps-cart a {
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+        .kbps-header-mobile .kbps-header-container {
+            gap: 5px;
+        }
+        .kbps-header-mobile .kbps-logo img {
+            width: 60px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .kbps-header-mobile .kbps-header-container {
+            gap: 0;
+        }
+        .kbps-header-mobile .kbps-logo img {
+            width: 50px;
+        }
+    }
+}

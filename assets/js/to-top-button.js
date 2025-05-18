@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Показывать/скрывать кнопку при прокрутке
+    /*
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
             backToTopButton.style.display = 'flex';
@@ -16,4 +16,5 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTopButton.style.display = 'none';
         }
     });
+    */
 });

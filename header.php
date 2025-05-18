@@ -42,17 +42,19 @@ global $kbpsCore;
                     </div>
                 </div>
 
-                <!-- Меню с заголовком "MENU" -->
+                <!-- Меню с заголовком "MENU" (Desktop)-->
                 <nav class="kbps-menu">
                     <h3 class="kbps-menu-title">MENU</h3>
-                    <?php
-                    wp_nav_menu([
-                        'theme_location' => 'primary',
-                        'menu_class'     => 'kbps-menu-vertical',
-                        'container'      => false,
-                        'fallback_cb'    => false,
-                    ]);
-                    ?>
+                    <div class="kbps-menu-content">
+                        <?php
+                        wp_nav_menu([
+                            'theme_location' => 'primary',
+                            'menu_class'     => 'kbps-menu-vertical',
+                            'container'      => false,
+                            'fallback_cb'    => false,
+                        ]);
+                        ?>
+                    </div>
                 </nav>
 
                 <!-- Корзина WooCommerce -->
@@ -72,8 +74,8 @@ global $kbpsCore;
 
     
 
- <!-- Мобильная версия хедера -->
- <header class="kbps-header-mobile">
+<!-- Мобильная версия хедера -->
+<header class="kbps-header-mobile">
         <div class="kbps-header-container">
             <!-- Соцсети -->
             <div class="kbps-social-icons">

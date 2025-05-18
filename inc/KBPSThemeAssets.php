@@ -40,6 +40,13 @@ class KBPSThemeAssets {
         );
 
         wp_enqueue_style(
+            'kbps-core-styles',
+            KBPS_THEME_URI . 'assets/css/core-styles.css',
+            [],
+            filemtime(KBPS_THEME_DIR . 'assets/css/core-styles.css')
+        );
+
+        wp_enqueue_style(
             'kbps-header-styles',
             KBPS_THEME_URI . 'assets/css/header-styles.css',
             ['kbps-core-reset'],
@@ -129,6 +136,14 @@ class KBPSThemeAssets {
         wp_enqueue_script(
             'kbps-cake-order',
             get_template_directory_uri() . '/assets/js/cake-order.js',
+            array(),
+            '1.0.1',
+            true
+        );
+
+        wp_enqueue_script(
+            'kbps-header',
+            get_template_directory_uri() . '/assets/js/header.js',
             array(),
             '1.0.1',
             true

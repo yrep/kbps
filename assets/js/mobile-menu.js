@@ -1,3 +1,5 @@
+
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const menuTitle = document.querySelector('.kbps-header-mobile .kbps-menu-title');
     const menu = document.querySelector('.kbps-header-mobile .kbps-menu');
@@ -8,3 +10,4 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+  */

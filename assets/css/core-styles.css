@@ -1,0 +1,19 @@
+body {
+    font-family: 'JetBrainsMono', sans-serif;
+    padding-top: 0;
+    transition: padding-top 0.3s ease;
+    width: 100%;
+}
+
+.kbps-main-wrapper {
+    max-width: var(--max-content-width) !important;
+    margin: auto;
+}
+
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+        transition: padding-top 0.3s ease;
+    }
+}

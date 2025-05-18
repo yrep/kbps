@@ -29,25 +29,83 @@ if (have_posts()) : while (have_posts()) : the_post();
 <main id="main-content">
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <header class="entry-header">
-            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <h1 class="entry-title hidden"><?php the_title(); ?></h1>
             
             <!-- Cake post must has a taxonomy to have back button! -->
 
             <?php if ($back_link_url) : ?>
                 <a href="<?php echo esc_url($back_link_url); ?>" class="back-to-archive-link">
-                    <button class="back-to-archive" aria-label="<?php esc_attr_e('Back to Cakes catalog', 'kbps'); ?>">
+                    <button class="button-arrow back-to-archive" aria-label="<?php esc_attr_e('Back to Cakes catalog', 'kbps'); ?>">
                         <i class="fas fa-arrow-left"></i>
                     </button>
                 </a>
             <?php endif; ?>
 
 
-            <?php if (has_post_thumbnail()) : ?>
-                <div class="main-image">
-                    <?php the_post_thumbnail('large'); ?>
-                </div>
-            <?php endif; ?>
         </header>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main">
+    <?php if (has_post_thumbnail()) : ?>
+        <div class="main-image">
+            <?php the_post_thumbnail('large'); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php
+    $filling_ids_array = array();
+    if (!empty($filling_ids)) {
+        $filling_ids_array = array_map('absint', explode(',', $filling_ids));
+    }
+
+    if (!empty($filling_ids_array)) : ?>
+        <section class="main available-fillings">
+            <h2><?php _e('Náplně', 'kbps'); ?></h2>
+            <div class="fillings-list">
+                <?php
+                $fillings_query = new WP_Query(array(
+                    'post_type'      => 'filling',
+                    'post__in'       => $filling_ids_array,
+                    'posts_per_page' => -1,
+                    'orderby'        => 'post__in',
+                    'ignore_sticky_posts' => true,
+                ));
+
+                if ($fillings_query->have_posts()) :
+                    while ($fillings_query->have_posts()) : $fillings_query->the_post();
+                ?>
+                        <div class="filling-item">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <div class="filling-thumbnail">
+                                    <?php the_post_thumbnail('thumbnail'); ?>
+                                </div>
+                            <?php endif; ?>
+                            <h3 class="filling-title"><?php the_title(); ?></h3>
+                            <a href="<?php the_permalink(); ?>?filling_id=<?php echo get_the_ID(); ?>" class="select-filling-link"><?php _e('Více', 'kbps'); ?></a>
+                        </div>
+                <?php
+                    endwhile;
+                    wp_reset_postdata();
+                endif;
+                ?>
+            </div>
+        </section>
+    <?php endif; ?>
+</div>
+
+
+
+
 
         <div class="entry-content">
             <section class="cake-details">
@@ -76,50 +134,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                 </section>
             <?php endif; ?>
 
-            <?php
-                $filling_ids_array = array();
-                if (!empty($filling_ids)) {
-                    // Split the comma-separated string into an array of IDs
-                    $filling_ids_array = array_map('absint', explode(',', $filling_ids));
-                }
-
-                if (!empty($filling_ids_array)) :
-            ?>
-                <section class="available-fillings">
-                    <h2><?php _e('Náplně', 'kbps'); ?></h2>
-                    <div class="fillings-list">
-                        <?php
-                            $fillings_query = new WP_Query( array(
-                                'post_type'      => 'filling',
-                                'post__in'       => $filling_ids_array,
-                                'posts_per_page' => -1,
-                                'orderby'        => 'post__in',
-                                'ignore_sticky_posts' => true,
-                            ) );
-
-                            if ($fillings_query->have_posts()) :
-                                while ($fillings_query->have_posts()) : $fillings_query->the_post();
-                            ?>
-                                <div class="filling-item">
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <div class="filling-thumbnail">
-                                            <?php the_post_thumbnail('thumbnail'); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <h3 class="filling-title"><?php the_title(); ?></h3>
-                                    <?php
-                                        // the_excerpt();
-                                    ?>
-                                    <a href="<?php the_permalink(); ?>?filling_id=<?php echo get_the_ID(); ?>" class="select-filling-link"><?php _e('Více', 'kbps'); ?></a>
-                                </div>
-                            <?php
-                                endwhile;
-                                wp_reset_postdata();
-                            endif;
-                        ?>
-                    </div>
-                </section>
-            <?php endif; ?>
+            
 
             <?php if ($gallery) :
                 $gallery_ids = explode(',', $gallery);

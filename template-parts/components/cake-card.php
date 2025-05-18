@@ -25,19 +25,19 @@ $defaults = [
 $data = wp_parse_args($args, $defaults);
 ?>
 
-<div class="cake-card">
-    <a href="<?php echo esc_url($data['link']); ?>" class="cake-card__link">
+<div class="slider cake-card">
+    <a href="<?php echo esc_url($data['link']); ?>" class="slider cake-card__link">
         <img src="<?php echo esc_url($data['image']); ?>" 
             alt="<?php echo esc_attr($data['title']); ?>" 
-            class="cake-card__image">
+            class="slider cake-card__image">
         
-        <div class="cake-card__model" 
+        <div class="slider cake-card__model" 
             data-model="<?php echo esc_attr($data['model']); ?>">
             <?php echo esc_html($data['model']); ?>
         </div>
     </a>
     
-    <h3 class="cake-card__title">
+    <h3 class="slider cake-card__title">
         <?php echo esc_html($data['title']); ?>
     </h3>
 </div>

@@ -57,7 +57,7 @@ if (!defined('ABSPATH')) {
         <!-- Правая секция - кнопка и лого -->
         <div class="footer-section actions-section">
             <div class="footer-actions">
-                <button class="back-to-top" aria-label="Back to top">
+                <button class="button-arrow back-to-top" aria-label="Back to top">
                     <i class="fas fa-arrow-up"></i>
                 </button>
                 <div class="footer-logo">

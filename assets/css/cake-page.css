@@ -1,47 +1,39 @@
-.available-fillings {
-    margin-top: 20px;
+.main {
+    display: block;
 }
 
-.available-fillings h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.main-image {
+    margin-bottom: 30px;
+}
+
+.main-image img {
+    max-width: 100%;
+    height: auto;
 }
 
 .fillings-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
 .filling-item {
-    flex: 0 1 200px;
-    text-align: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
+    border: 1px solid #eee;
+    padding: 15px;
 }
 
-.filling-item .filling-thumbnail img {
-    max-width: 100%;
+.filling-thumbnail img {
+    width: 100%;
     height: auto;
-    border-radius: 4px;
 }
 
-.filling-item .filling-title {
-    margin-top: 10px;
-    font-size: 1em;
-}
-
-.filling-item .select-filling-link {
+.select-filling-link {
     display: inline-block;
     margin-top: 10px;
-    text-decoration: none;
-    color: #0073aa;
+    color: var(--kbps-global-color-main);
 }
 
+/*
 @media (max-width: 768px) {
     .fillings-list {
         flex-direction: column;
@@ -58,6 +50,11 @@
         width: 100%;
     }
 }
+
+*/
+
+
+/*Modal filling*/
 
 .modal {
     position: fixed;
@@ -213,42 +210,42 @@
 }
 
 
-
-/* Добавьте это правило, если его еще нет */
 .entry-header {
-    position: relative; /* Важно для абсолютного позиционирования кнопки внутри */
+    position: relative;
+    margin-top: 4rem;
 }
 
 .back-to-archive-link {
-    position: absolute; /* Позиционируем абсолютно относительно .entry-header */
-    top: 20px; /* Отступ сверху */
-    left: 20px; /* Отступ слева */
-    z-index: 10; /* Убедимся, что кнопка поверх изображения */
-    display: block; /* Убедимся, что ссылка является блочным элементом для размеров/позиционирования */
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    z-index: 10;
+    display: block;
 }
 
 
 .back-to-archive {
-    display: flex; /* Используем flexbox для центрирования иконки */
+    width: 32px;
+    height: 32px;
+    /*
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; /* Размер кнопки */
-    height: 40px; /* Размер кнопки */
-    border-radius: 50%; /* Делаем кнопку круглой */
-    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
-    border: 1px solid #ccc; /* Небольшая граница */
-    cursor: pointer; /* Указатель курсора при наведении */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Небольшая тень */
-    transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;*/
 }
 
-.back-to-archive:hover {
-    background-color: rgba(255, 255, 255, 1); /* Полностью белый фон при наведении */
-}
+
 
 .back-to-archive i {
-    font-size: 18px; /* Размер иконки */
-    color: #333; /* Цвет иконки */
+    font-size: 18px;
+    color: #ffffff;
 }
 
 /* Медиазапрос для мобильных, если нужно изменить положение или размер */

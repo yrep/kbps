@@ -22,7 +22,7 @@
 .wedding-block__big-photo-wrapper img {
     display: block;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .wedding-block__small-photo-wrapper img {
@@ -44,6 +44,9 @@
 .wedding-block__small-photo-wrapper.photo-2,
 .wedding-block__text-wrapper {
     overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .wedding-block__text-wrapper p {
@@ -189,4 +192,36 @@
     height: unset;
     width: 100%;
     object-fit: cover;
+}
+
+.cake-image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*Cake Model Indicator*/
+
+.cake-card__model {
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--kbps-global-color-custom-02);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.slider.cake-card:hover .cake-card__model {
+    background-color: var(--kbps-global-color-secondary);
 }

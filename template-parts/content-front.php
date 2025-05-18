@@ -24,12 +24,9 @@
         ?>
         <div class="wedding-block-container block-<?php echo $block_num; ?>">
             <div class="wedding-block block-<?php echo $block_num; ?>">
-                <div class="wedding-block__big-photo-wrapper block-<?php echo $block_num; ?>">
-                    <a href="<?php echo esc_url( $cake['permalink'] ); ?>">
-                        <img src="<?php echo esc_url( $cake['thumbnail'] ); ?>" alt="<?php echo esc_attr( $cake['title'] ); ?>" class="kbps-thumbnail">
-                    </a>
-                </div>
-
+                
+                <?php include __DIR__ . '/components/cake-card-main.php'; ?>
+                
                 <?php
                 if (!empty($smallImages[$i])) {
                 ?>

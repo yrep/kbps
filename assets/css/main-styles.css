@@ -108,28 +108,35 @@
 
 /*SLIDER*/
 
-.cake-card {
-    height: 30vh;
+.slider.cake-card {
+    height: 40vh;
     width: 100%;
 }
 
-.cake-card__link {
+.slider.cake-card__link {
     display: block;
     height: 100%;
     width: 100%;
     position: relative;
 }
 
-.cake-card__image {
+.slider.cake-card__image {
     display: block;
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.cake-card__model {
-    position: absolute;
+.slider.cake-card__model {
     bottom: 10px;
     left: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
     z-index: 100;
+}
+
+
+.wedding-block__big-photo-wrapper:hover .cake-card__model {
+    background-color: var(--kbps-global-color-secondary);
 }

@@ -46,15 +46,6 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 
 
-
-
-
-
-
-
-
-
-
 <div class="main">
     <?php if (has_post_thumbnail()) : ?>
         <div class="main-image">
@@ -109,6 +100,11 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 
         <div class="entry-content">
+
+            <div class="entry-content__description">
+                <?php the_content(); ?>
+            </div>
+
             <section class="cake-details">
                 <h2><?php _e('Cake Details', 'kbps'); ?></h2>
                 <p><strong><?php _e('Model Number', 'kbps'); ?>:</strong> <?php echo esc_html($model); ?></p>

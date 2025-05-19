@@ -2,6 +2,10 @@
 
 class KBPSCakePostManager {
 
+	public static function init() {
+		add_filter('the_content', [self::class, 'maybeAppendDefaultDescription']);
+	}
+
 
 	public static function getCakesForSlider($args = []) {
 		$image_size = $args['image_size'] ?? 'large';
@@ -297,5 +301,23 @@ class KBPSCakePostManager {
 		return $results;
 	}
 	
+
+	// Append default description
+	public static function maybeAppendDefaultDescription($content) {
+		if (is_singular('cake') && in_the_loop() && is_main_query()) {
+			$default = get_option('kbps_cake_default_description', '');
+			$append = get_option('kbps_cake_append_mode');
+
+			if (!has_excerpt() && empty(trim(strip_tags($content)))) {
+				return wpautop($default);
+			}
+
+			if ($append && !empty($default)) {
+				return $content . wpautop($default);
+			}
+		}
+
+		return $content;
+	}
 
 }

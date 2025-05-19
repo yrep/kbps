@@ -1,3 +1,9 @@
+h2 {
+    font-weight: 200;
+    font-size: medium;
+}
+
+
 .cake-archive {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

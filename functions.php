@@ -50,6 +50,7 @@ $kbpsAjax = new KBPSAjax();
 $kbpsCakeRequest = new KBPSCakeRequestPostType();
 $kbpsCake = new KBPSCakePostType();
 $kbpsFilling = new KBPSFillingPostType();
+KBPSCakePostManager::init();
 
 
 

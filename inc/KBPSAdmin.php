@@ -58,6 +58,15 @@ class KBPSAdmin {
             'manage_options',
             'edit-tags.php?taxonomy=cake_type&post_type=cake'
         );
+
+        add_submenu_page(
+            'kbps_menu',
+            __('Cake Settings', 'kbps'),
+            __('Cake Settings', 'kbps'),
+            'manage_options',
+            'kbps_cake_settings',
+            array($this, 'render_cake_settings_page')
+        );
     }
 
     public function kbps_front_page_settings() {
@@ -86,7 +95,61 @@ class KBPSAdmin {
         <?php
     }
 
+    /*
     public function front_page_cakes_setting_registration() {
         register_setting('kbps_front_page_options', 'kbps_front_cake_models');
     }
+    */
+
+    public function front_page_cakes_setting_registration() {
+        register_setting('kbps_front_page_options', 'kbps_front_cake_models');
+        register_setting('kbps_cake_settings_group', 'kbps_cake_default_description');
+        register_setting('kbps_cake_settings_group', 'kbps_cake_append_mode'); // checkbox append description
+
+        add_settings_section(
+            'kbps_cake_main_section',
+            __('Cake Default Settings', 'kbps'),
+            null,
+            'kbps_cake_settings'
+        );
+
+        add_settings_field(
+            'kbps_cake_default_description',
+            __('Default Cake Description', 'kbps'),
+            function () {
+                $value = get_option('kbps_cake_default_description', '');
+                echo '<textarea name="kbps_cake_default_description" rows="5" cols="50" class="large-text">' . esc_textarea($value) . '</textarea>';
+            },
+            'kbps_cake_settings',
+            'kbps_cake_main_section'
+        );
+
+        add_settings_field(
+            'kbps_cake_append_mode',
+            __('Append to Custom Description?', 'kbps'),
+            function () {
+                $checked = get_option('kbps_cake_append_mode') ? 'checked' : '';
+                echo '<input type="checkbox" name="kbps_cake_append_mode" value="1" ' . $checked . '> ' . __('Yes, append to custom description', 'kbps');
+            },
+            'kbps_cake_settings',
+            'kbps_cake_main_section'
+        );
+    }
+
+    public function render_cake_settings_page() {
+        ?>
+        <div class="wrap">
+            <h1><?php _e('Cake Settings', 'kbps'); ?></h1>
+            <form method="post" action="options.php">
+                <?php
+                    settings_fields('kbps_cake_settings_group');
+                    do_settings_sections('kbps_cake_settings');
+                    submit_button();
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+
+
 }

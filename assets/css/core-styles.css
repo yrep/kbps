@@ -5,6 +5,11 @@ body {
     width: 100%;
 }
 
+p {
+    font-size: x-small;
+    font-weight: 200;
+}
+
 .kbps-main-wrapper {
     max-width: var(--max-content-width) !important;
     margin: auto;

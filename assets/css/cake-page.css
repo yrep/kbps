@@ -67,9 +67,10 @@
     object-fit: cover;
 }
 
-.filling-title {
+.filling-item h3.filling-title {
+    font-weight: 200;
+    font-size: small;
     margin: 0;
-    font-size: 1em;
     flex-grow: 1;
 }
 

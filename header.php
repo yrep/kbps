@@ -36,9 +36,9 @@ global $kbpsCore;
                 <!-- Соцсети -->
                 <div class="kbps-header-icon-container">
                     <div class="kbps-social-icons">
-                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@KrakhmalnikovBrothers/" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/krakhmalnikov_brothers/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="tel:+420733392158" target="_blank"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
 
@@ -79,9 +79,9 @@ global $kbpsCore;
         <div class="kbps-header-container">
             <!-- Соцсети -->
             <div class="kbps-social-icons">
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@KrakhmalnikovBrothers/" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/krakhmalnikov_brothers/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="tel:+420733392158" target="_blank"><i class="fas fa-phone"></i></a>
             </div>
 
             <!-- Лого -->

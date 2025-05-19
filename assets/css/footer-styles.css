@@ -175,3 +175,16 @@ input:focus, textarea:focus {
   margin: 10px 0 0 20px;
   padding: 0;
 }
+
+
+
+.footer-copyright-container {
+  width: 100%;
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: x-small;
+  font-weight: 200;
+  display: inline-block;
+}

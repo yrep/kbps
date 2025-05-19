@@ -69,8 +69,13 @@ if (!defined('ABSPATH')) {
                 </div>
             </div>
         </div>
+
     </div>
-    
+    <div class="footer-copyright-container">
+        <div class="footer-copyright">
+            <?php echo '© ' . date('Y') . ' Krakhmalnikov Brothers.'; ?>
+        </div>
+    </div>
 </footer>
 
 </body>

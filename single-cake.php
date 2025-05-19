@@ -74,10 +74,10 @@ if (have_posts()) : while (have_posts()) : the_post();
             <div class="fillings-list">
                 <?php
                 $fillings_query = new WP_Query(array(
-                    'post_type'      => 'filling',
-                    'post__in'       => $filling_ids_array,
-                    'posts_per_page' => -1,
-                    'orderby'        => 'post__in',
+                    'post_type'          => 'filling',
+                    'post__in'           => $filling_ids_array,
+                    'posts_per_page'     => -1,
+                    'orderby'            => 'post__in',
                     'ignore_sticky_posts' => true,
                 ));
 
@@ -85,13 +85,14 @@ if (have_posts()) : while (have_posts()) : the_post();
                     while ($fillings_query->have_posts()) : $fillings_query->the_post();
                 ?>
                         <div class="filling-item">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="filling-thumbnail">
-                                    <?php the_post_thumbnail('thumbnail'); ?>
-                                </div>
-                            <?php endif; ?>
-                            <h3 class="filling-title"><?php the_title(); ?></h3>
-                            <a href="<?php the_permalink(); ?>?filling_id=<?php echo get_the_ID(); ?>" class="select-filling-link"><?php _e('Více', 'kbps'); ?></a>
+                            <a href="<?php the_permalink(); ?>?filling_id=<?php echo get_the_ID(); ?>" class="select-filling-link">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="filling-thumbnail">
+                                        <?php the_post_thumbnail('thumbnail'); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <h3 class="filling-title"><?php the_title(); ?></h3>
+                                </a>
                         </div>
                 <?php
                     endwhile;

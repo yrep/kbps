@@ -58,16 +58,14 @@ global $kbpsCore;
                 </nav>
 
                 <!-- Корзина WooCommerce -->
-                <div class="kbps-header-icon-container">
-                    <div class="kbps-cart">
-                        <a href="<?php echo wc_get_cart_url(); ?>">
-                            <i class="fas fa-shopping-cart"></i>
-                            <?php if (WC()->cart->get_cart_contents_count() > 0) : ?>
-                                <span class="kbps-cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
-                            <?php endif; ?>
-                        </a>
-                    </div>
+               <div class="kbps-header-icon-container">
+                <div class="kbps-cart">
+                    <a href="<?php echo wc_get_cart_url(); ?>">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="kbps-cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                    </a>
                 </div>
+            </div>
             </div>
         </div>
     </header>

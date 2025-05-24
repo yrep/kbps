@@ -129,10 +129,97 @@ class KBPSThemeAssets {
 
 
 
-    public function enqueueScripts() {
+  public function enqueueScripts() {
+    // Основные скрипты
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('wc-cart-fragments');
+    wp_enqueue_script('wc-add-to-cart');
+    wp_enqueue_script('woocommerce');
+
+    // Кастомный скрипт
+    wp_enqueue_script(
+        'kbps-header',
+        get_template_directory_uri() . '/assets/js/header.js',
+        array('jquery', 'wc-cart-fragments', 'wc-add-to-cart', 'woocommerce'),
+        '1.0.11', // Обновляем версию
+        true
+    );
+
+    // Локализация
+    wp_localize_script(
+        'kbps-header',
+        'kbps_cart_params',
+        array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('kbps_cart_nonce')
+        )
+    );
+
+    // Кастомные скрипты
+    wp_enqueue_script(
+        'custom-menu',
+        KBPS_THEME_URI . '/assets/js/mobile-menu.js',
+        array('jquery'),
+        '1.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'to-top-button',
+        KBPS_THEME_URI . '/assets/js/to-top-button.js',
+        array('jquery'),
+        '1.0',
+        true
+    );
+
+    wp_enqueue_script(
+        'kbps-cake-order',
+        get_template_directory_uri() . '/assets/js/cake-order.js',
+        array('jquery'),
+        '1.0.1',
+        true
+    );
+
+    wp_enqueue_script(
+        'swiper',
+        get_template_directory_uri() . '/assets/js/swiper-bundle.min.js',
+        array(),
+        null,
+        true
+    );
+    wp_enqueue_script(
+        'kbps-front-page',
+        get_template_directory_uri() . '/assets/js/front-page.js',
+        array('swiper'),
+        '1.0.1',
+        true
+    );
+
+    // Локализация для kbps-cake-order
+    wp_localize_script(
+        'kbps-cake-order',
+        'kbpsAjax',
+        array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('kbps_order_nonce')
+        )
+    );
+
+}
+
+
+        /*
         wp_enqueue_script('custom-menu', KBPS_THEME_URI . '/assets/js/mobile-menu.js', array(), '1.0', true);
         wp_enqueue_script('to-top-button', KBPS_THEME_URI . '/assets/js/to-top-button.js', array(), '1.0', true);
         
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('wc-cart-fragments');
+        
+        wp_localize_script('jquery', 'kbps_cart_params', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+        ));
+
+
         wp_enqueue_script(
             'kbps-cake-order',
             get_template_directory_uri() . '/assets/js/cake-order.js',
@@ -144,7 +231,7 @@ class KBPSThemeAssets {
         wp_enqueue_script(
             'kbps-header',
             get_template_directory_uri() . '/assets/js/header.js',
-            array(),
+            array('jquery'),
             '1.0.1',
             true
         );
@@ -173,7 +260,8 @@ class KBPSThemeAssets {
             '1.0.1',
             true
         );
-}
+        */
+
 
     public function enqueueFontAwesome() {
         wp_enqueue_style(

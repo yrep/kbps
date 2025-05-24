@@ -1,13 +1,139 @@
 <?php
 class KBPSAjax {
     public function __construct() {
-        add_action('wp_ajax_kbps_process_order_form', array($this, 'process_order_form'));
-        add_action('wp_ajax_nopriv_kbps_process_order_form', array($this, 'process_order_form'));
-        add_action( 'wp_ajax_get_filling_data',  array($this, 'kbps_ajax_get_filling_data' ));
-        add_action( 'wp_ajax_nopriv_get_filling_data',  array($this, 'kbps_ajax_get_filling_data' ));
+        // AJAX для счётчика и удаления
+        add_action('wp_ajax_kbps_remove_cart_item', array($this, 'kbps_remove_cart_item_callback'));
+        add_action('wp_ajax_nopriv_kbps_remove_cart_item', array($this, 'kbps_remove_cart_item_callback'));
+
+        // Фрагменты для счётчика
+        add_filter('woocommerce_add_to_cart_fragments', array($this, 'kbps_cart_count_fragment'));
+        add_filter('woocommerce_update_cart_fragments', array($this, 'kbps_cart_count_fragment'));
+
+        // AJAX для блочной корзины
+        add_action('wp_footer', array($this, 'kbps_force_cart_ajax'), 100);
+
+        // Подавление REST API /users/me
+        add_filter('rest_pre_dispatch', array($this, 'kbps_disable_user_me_for_guests'), 10, 3);
     }
 
-    
+    // Удаление товара
+    public function kbps_remove_cart_item_callback() {
+        if (!check_ajax_referer('kbps_cart_nonce', '_wpnonce', false)) {
+            wp_send_json_error(array('message' => 'Invalid nonce'), 403);
+            wp_die();
+        }
+
+        if (!isset($_GET['cart_item_key']) || empty($_GET['cart_item_key'])) {
+            wp_send_json_error(array('message' => 'Cart item key missing'), 400);
+            wp_die();
+        }
+
+        if (!function_exists('WC') || !WC()->cart) {
+            wp_send_json_error(array('message' => 'Cart not available'), 500);
+            wp_die();
+        }
+
+        $cart_item_key = sanitize_text_field($_GET['cart_item_key']);
+        $cart = WC()->cart;
+        $removed = $cart->remove_cart_item($cart_item_key);
+
+        if ($removed || !$cart->get_cart_item($cart_item_key)) {
+            $cart->calculate_totals();
+            do_action('woocommerce_cart_updated');
+            $fragments = $this->kbps_cart_count_fragment(array());
+            wp_send_json_success(array(
+                'fragments' => $fragments,
+                'cart_item_key' => $cart_item_key,
+                'cart_count' => $cart->get_cart_contents_count()
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Failed to remove item: ' . $cart_item_key));
+        }
+        wp_die();
+    }
+
+    // Фрагмент счётчика
+    public function kbps_cart_count_fragment($fragments) {
+        ob_start();
+        ?>
+        <span class="kbps-cart-count"><?php echo function_exists('WC') && WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
+        <?php
+        $fragments['.kbps-cart-count'] = ob_get_clean();
+        return $fragments;
+    }
+
+    // AJAX для блочной корзины
+    public function kbps_force_cart_ajax() {
+        if (is_cart() || is_checkout()) {
+            wc_enqueue_js('
+                jQuery(document).on("click", ".wc-block-cart__remove-item, .wc-block-components-product-remove", function(e) {
+                    e.preventDefault();
+                    var $this = jQuery(this);
+                    var $cartItem = $this.closest("[data-cart-item-key]");
+                    var cartItemKey = $cartItem.data("cart-item-key") || $this.attr("data-cart-item-key");
+                    if (!cartItemKey) {
+                        console.error("Cart item key not found", $this);
+                        return;
+                    }
+                    console.log("Remove triggered for key:", cartItemKey);
+                    // Скрываем элемент сразу
+                    $cartItem.fadeOut(200);
+                    jQuery.ajax({
+                        url: "' . admin_url('admin-ajax.php') . '",
+                        type: "GET",
+                        data: {
+                            action: "kbps_remove_cart_item",
+                            cart_item_key: cartItemKey,
+                            _wpnonce: "' . wp_create_nonce('kbps_cart_nonce') . '"
+                        },
+                        dataType: "json",
+                        cache: false,
+                        success: function(response) {
+                            if (response.success) {
+                                console.log("Item removed:", response);
+                                // Обновляем счётчик
+                                jQuery(".kbps-cart-count").text(response.data.cart_count);
+                                // Синхронизируем корзину
+                                jQuery(document.body).trigger("wc_fragment_refresh");
+                                jQuery(document.body).trigger("wc_cart_updated");
+                                jQuery(document.body).trigger("wc-blocks_cart_updated");
+                                if (window.wc && window.wc.blocksCart) {
+                                    window.wc.blocksCart.dispatch("cart-updated");
+                                }
+                            } else {
+                                console.error("Remove failed:", response.data.message);
+                                $cartItem.fadeIn(200);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Remove error:", status, error);
+                            $cartItem.fadeIn(200);
+                        }
+                    });
+                });
+            ');
+        }
+    }
+
+    // Подавление REST API /users/me
+    public function kbps_disable_user_me_for_guests($result, $server, $request) {
+        if (strpos($request->get_route(), '/wp/v2/users/me') !== false && !is_user_logged_in()) {
+            return new WP_Error('rest_not_logged_in', __('Momentálně nejste přihlášeni.', 'woocommerce'), array('status' => 401));
+        }
+        return $result;
+    }
+
+
+
+
+     //Корзина
+/*
+    function kbps_update_cart_count($fragments) {
+        $count = WC()->cart->get_cart_contents_count();
+        $fragments['.kbps-cart-count'] = '<span class="kbps-cart-count">' . ($count > 0 ? $count : '') . '</span>';
+        return $fragments;
+    }
+*/
     
     /**
      * AJAX-filling data.
@@ -161,4 +287,9 @@ class KBPSAjax {
 
         wp_die();
     }
+
+
+
+   
+
 }

@@ -5,6 +5,11 @@ body {
     width: 100%;
 }
 
+.site-content {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 p {
     font-size: x-small;
     font-weight: 200;

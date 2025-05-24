@@ -263,7 +263,8 @@ class KBPSCakePostManager {
 			'post_type' => 'cake',
 			'posts_per_page' => 4,
 			'orderby' => 'meta_value_num',
-			'meta_key' => 'kbps_model'
+			'meta_key' => 'kbps_model',
+			'order' => 'ASC'
 		];
 	
 		if (!empty($requested_models)) {

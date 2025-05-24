@@ -105,7 +105,7 @@
 
 
 /*Modal filling*/
-
+/*
 .modal {
     position: fixed;
     top: 0;
@@ -127,9 +127,10 @@
     position: relative;
     z-index: 1001;
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    max-width: 800px;
-    max-height: 400px;
+    max-width: 420px;
+    max-height: 460px;
     width: 90%;
     height: 90%;
     overflow: hidden;
@@ -154,6 +155,7 @@
 
 .modal-body {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     gap: 20px;
@@ -258,6 +260,136 @@
         overflow-y: visible;
     }
 }
+*/
+
+
+
+/* Modal Container */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2rem; /* отступ от краёв экрана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem 2rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Кнопка закрытия */
+.modal-content .close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.modal-content .close-button:hover {
+    color: #777;
+}
+
+/* Вся внутренняя часть модалки */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Блок изображения */
+.modal-image-section {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Контейнер под картинку */
+.image-placeholder-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Картинка */
+#modal-filling-image-full {
+    display: block;
+    max-width: 100%;
+    max-height: 50vh; /* <= ВАЖНО: ограничение по высоте вьюпорта */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Заглушка на время загрузки */
+.image-placeholder-square {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding-top: 100%;
+    background-color: #ccc;
+    animation: pulse-grey 1.5s infinite alternate;
+    display: none;
+    position: relative;
+}
+
+@keyframes pulse-grey {
+    0% { background-color: #eee; }
+    100% { background-color: #bbb; }
+}
+
+/* Текстовая часть */
+.modal-details-section {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .entry-header {

@@ -136,7 +136,7 @@
 .modal-body {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     flex: 1;
     overflow: hidden;
 }
@@ -164,18 +164,15 @@
 #modal-filling-image-full {
     display: block;
     max-width: 100%;
-    max-height: 70vh; /* <= ВАЖНО: ограничение по высоте вьюпорта */
-    width: auto;
-    height: auto;
+    max-height: 50vh;
     object-fit: contain;
 }
 
 /* Заглушка на время загрузки */
 .image-placeholder-square {
     width: 100%;
-    max-width: 300px;
-    height: auto;
-    padding-top: 100%;
+    max-width: 100%;
+    height: 50vh;
     background-color: #ccc;
     animation: pulse-grey 1.5s infinite alternate;
     display: none;

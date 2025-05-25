@@ -102,9 +102,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+/*
+jQuery(document).ready(function($) {
+    if (typeof kbps_cart_params === 'undefined') {
+        console.error('kbps_cart_params not defined');
+        return;
+    }
 
+    function updateCartCount() {
+        $.ajax({
+            url: kbps_cart_params.ajax_url,
+            type: 'GET',
+            data: {
+                action: 'kbps_get_cart_count', // должен быть зарегистрирован на стороне PHP
+                _wpnonce: kbps_cart_params.nonce
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success && response.data && typeof response.data.cart_count !== 'undefined') {
+                    const count = parseInt(response.data.cart_count, 10);
+                    const $cartCount = $('.kbps-cart-count');
 
+                    if (count > 0) {
+                        $cartCount.text(count).show();
+                    } else {
+                        $cartCount.hide();
+                    }
+                } else {
+                    console.error('Ошибка получения cart_count:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX ошибка:', status, error);
+            }
+        });
+    }
 
+    // Инициализация счётчика при загрузке страницы
+    updateCartCount();
+
+    // Обновление счётчика при добавлении товара в корзину
+    $(document.body).on('added_to_cart', function () {
+        console.log('Товар добавлен в корзину');
+        updateCartCount();
+    });
+
+    // Также можно вызвать при удалении товара или других событиях
+    $(document.body).on('removed_from_cart', function () {
+        console.log('Товар удален из корзины');
+        updateCartCount();
+    });
+});
+*/
 
 
 
@@ -129,7 +178,16 @@ jQuery(document).ready(function($) {
         cache: false,
         success: function(response) {
             if (response.data && response.data.cart_count !== undefined) {
-                $('.kbps-cart-count').text(response.data.cart_count);
+                const count = parseInt(response.data.cart_count, 10);
+
+                if (count > 0) {
+                    $('.kbps-cart-count')
+                        .text(count)
+                        .show();
+                } else {
+                    $('.kbps-cart-count')
+                        .hide();
+                }
             }
         }
     });
@@ -149,7 +207,7 @@ jQuery(document).ready(function($) {
             cache: false,
             success: function(response) {
                 if (response.data && response.data.cart_count !== undefined) {
-                    $('.kbps-cart-count').text(response.data.cart_count);
+                    $('.kbps-cart-count').text(response.data.cart_count).show();
                 }
             }
         });

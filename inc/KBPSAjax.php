@@ -13,7 +13,10 @@ class KBPSAjax {
         add_action('wp_footer', array($this, 'kbps_force_cart_ajax'), 100);
 
         // Подавление REST API /users/me
-        add_filter('rest_pre_dispatch', array($this, 'kbps_disable_user_me_for_guests'), 10, 3);
+        //add_filter('rest_pre_dispatch', array($this, 'kbps_disable_user_me_for_guests'), 10, 3);
+
+        add_action('wp_ajax_get_filling_data', array($this, 'kbps_ajax_get_filling_data'));
+        add_action('wp_ajax_nopriv_get_filling_data', array($this, 'kbps_ajax_get_filling_data'));
     }
 
     // Удаление товара
@@ -115,14 +118,18 @@ class KBPSAjax {
         }
     }
 
+
+
+
     // Подавление REST API /users/me
+    /*
     public function kbps_disable_user_me_for_guests($result, $server, $request) {
         if (strpos($request->get_route(), '/wp/v2/users/me') !== false && !is_user_logged_in()) {
             return new WP_Error('rest_not_logged_in', __('Momentálně nejste přihlášeni.', 'woocommerce'), array('status' => 401));
         }
         return $result;
     }
-
+*/
 
 
 

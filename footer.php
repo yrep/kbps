@@ -19,31 +19,31 @@ if (!defined('ABSPATH')) {
             <div class="footer-order-form-container">
                 <h3>Zadejte objednávku</h3>
                 <form id="footer-order-form" method="POST">
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="cake-model">Model dortu №</label>
                         <input type="text" id="cake-model" name="cake-model" required>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="name">Vaše jméno</label>
                         <input type="text" id="name" name="name" required minlength="2">
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="mobile">Váš mobil</label>
                         <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,15}">
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="email">Váš email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="wedding-date">Datum svatby</label>
                         <input type="date" id="wedding-date" name="wedding-date" required>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="venue">Místo svatby</label>
                         <input type="text" id="venue" name="venue" required>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row footer">
                         <label for="guests">Počet hostů</label>
                         <input type="number" id="guests" name="guests" required min="1">
                     </div>

@@ -58,14 +58,26 @@ class KBPSCakePostType {
             'add_new_item'      => __('Add New Cake Type', 'kbps'),
             'new_item_name'     => __('New Cake Type Name', 'kbps'),
             'menu_name'         => __('Cake Types', 'kbps'),
+            'view_item'         => __('View Cake Type', 'kbps'),
+            'not_found'         => __('No cake types found.', 'kbps'),
+            'parent_item'       => __('Parent Cake Type', 'kbps'),
+            'parent_item_colon' => __('Parent Cake Type:', 'kbps'),
         );
 
         $args = array(
-            'hierarchical'      => true,
             'labels'            => $labels,
+            'hierarchical'      => true,
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
+            'rewrite'           => array(
+                'slug'         => 'cake-type',
+                'with_front'   => false,
+                'hierarchical' => true,
+            ),
+            'public'            => true,
+            'show_in_nav_menus' => true,
+            'show_tagcloud'     => false,
             'show_in_rest'      => true,
         );
 

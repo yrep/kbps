@@ -11,7 +11,7 @@
                 class="kbps-thumbnail">
         </a>
         <?php if (!empty($cake['model'])): ?>
-            <div class="cake-card__model">
+            <div class="cake-card__model model-number" data-model="<?php echo esc_attr($cake['model']); ?>">
                 <?php echo esc_html($cake['model']); ?>
             </div>
         <?php endif; ?>

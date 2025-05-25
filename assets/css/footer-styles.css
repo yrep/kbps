@@ -18,21 +18,48 @@ input:focus, textarea:focus {
   max-width: var(--max-content-width, 1200px);
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
 }
 
 .footer-section {
   flex: 0 0 50%;
   max-width: 50%;
   box-sizing: border-box;
+  position: relative;
 }
 
 
 .actions-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: space-between;
-  padding-left: 40px;
+  height: 100%;
+  padding: 20px;
+}
+
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.back-to-top {
+  align-self: flex-end;
+  margin-bottom: auto; /* Оттолкнёт от лого */
+}
+
+.footer-logo {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  transform: translateY(100px);
+}
+
+
+.footer-logo img {
+  max-height: 80px;
+  width: auto;
 }
 
 .form-section {
@@ -43,8 +70,10 @@ input:focus, textarea:focus {
   max-width: 100%;
 }
 
-.form-row {
+.form-row.footer {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   border-bottom: 1px solid var(--kbps-global-color-secondary);
   min-width: 140px;
@@ -55,15 +84,15 @@ input:focus, textarea:focus {
 }
 
 .form-row label {
-  flex: 0 1 auto;
+  flex: 0 1 80px;
+  white-space: nowrap;
   margin-right: 2rem;
   color: #555;
-  white-space: nowrap;
 }
 
 .form-row input {
-  flex: 1;
-  min-width: 10px;
+  flex: 1 1 auto;
+  min-width: 30px;
   border: none;
   background: transparent;
   padding: 5px;
@@ -114,30 +143,50 @@ input:focus, textarea:focus {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.footer-logo img {
-  max-height: 80px;
-  width: auto;
-}
+
+
 
 
 @media (max-width: 768px) {
   .footer-container {
       flex-direction: column;
+      position: relative;
   }
   
   .footer-section {
       flex: 0 0 100%;
       max-width: 100%;
+      position: relative;
   }
   
+  .footer-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+
   .actions-section {
       padding-left: 0;
-      flex-direction: row-reverse;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      margin-top: 30px;
+      margin-top: 20px;
   }
+
+  .footer-logo {
+    align-self: flex-start;
+    display: flex;
+    transform: unset;
+    order: 1;
+  }
+
+  .footer-actions button {
+    order: 2;
+  }
+
 }
+
+
+
 
 #wedding-date {
   color: transparent;

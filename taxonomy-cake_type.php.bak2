@@ -1,0 +1,43 @@
+<?php
+get_header(); 
+
+$term = get_queried_object();
+
+if ($term && $term->taxonomy === 'cake_type') :
+    $args = array(
+        'post_type' => 'cake',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'cake_type',
+                'field'    => 'slug',
+                'terms'    => $term->slug,
+            ),
+        ),
+    );
+    $query = new WP_Query($args);
+
+    ?>
+    <main id="main" class="site-main">
+        <header class="archive-header">
+            <h1 class="archive-title"><?php echo esc_html($term->name); ?></h1>
+        </header>
+
+        <div class="cake-archive">
+            <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="cake-card">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_title('<h2>', '</h2>'); ?>
+                    </a>
+                    <p><?php the_excerpt(); ?></p>
+                </div>
+            <?php endwhile; else: ?>
+                <p>Žádné dorty nebyly nalezeny.</p>
+            <?php endif; ?>
+        </div>
+    </main>
+<?php
+else :
+    get_template_part('template-parts/content', 'none');
+endif;
+
+get_footer();

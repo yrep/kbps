@@ -53,3 +53,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.model-number').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const model = this.getAttribute('data-model');
+            const inputModel = document.querySelector("#cake-model");
+            if(inputModel && model) {
+                inputModel.value = model;
+            }
+        });
+    });
+});

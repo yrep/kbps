@@ -159,6 +159,7 @@
 
 .kbps-cart {
     position: relative;
+    padding-top: 2px;
 }
 
 .kbps-cart a {
@@ -175,6 +176,7 @@
 
 .kbps-cart-count {
     position: absolute;
+    display: none;
     top: -10px;
     right: -10px;
     background: #ff0000;

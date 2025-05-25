@@ -59,6 +59,45 @@ button.button:hover,
 }
 
 
+.actions {
+  box-sizing: border-box;
+  width: 100% !important;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  .quantity {
+    display: flex;
+    flex-direction: row;
+  }
+
+  input .input-tex.qty {
+    padding: 0 !important;
+  }
+
+  button.button,
+  .checkout-button.button.alt.wc-forward {
+    box-sizing: border-box;
+    left: unset !important;
+    margin: auto !important;
+    text-align: center;
+  }
+
+  td[data-title="Doprava"]::before {
+  content: attr(data-title);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+}
+
+
 
 /*Checkout form*/
 
@@ -102,7 +141,7 @@ button.button:hover,
 /* 4. СТИЛИ ПОЛЕЙ ВВОДА */
 .input-text, select, textarea {
   width: 100% !important;
-  padding: 12px 15px;
+  padding: 0;
 
   background: #fff;
   font-size: 16px;
@@ -240,14 +279,9 @@ label {
 
 
 
-
-
-
-
 .woocommerce-shipping-methods li:has(> input.shipping_method[type="radio"]:checked) {
     color: var(--kbps-global-color-text-white);
     background-color: var(--kbps-global-color-main);
-    border-left: 3px solid var(--kbps-global-color-secondary);
     padding: 8px 12px;
     border-radius: 4px;
 }

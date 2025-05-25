@@ -30,12 +30,12 @@
 .fillings-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
 }
 
 .filling-item {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: 1px solid var(--kbps-global-color-main);
+    padding: 4px;
     overflow: hidden;
     transition: color 0.3s ease;
     cursor: pointer;
@@ -54,10 +54,10 @@
 }
 
 .filling-thumbnail {
-    flex: 0 0 56px;
-    width: 56px;
-    height: 56px;
-    margin-right: 10px;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    margin-right: 4px;
     overflow: hidden;
 }
 
@@ -345,7 +345,7 @@
 #modal-filling-image-full {
     display: block;
     max-width: 100%;
-    max-height: 50vh; /* <= ВАЖНО: ограничение по высоте вьюпорта */
+    max-height: 70vh; /* <= ВАЖНО: ограничение по высоте вьюпорта */
     width: auto;
     height: auto;
     object-fit: contain;

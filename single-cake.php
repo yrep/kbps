@@ -118,8 +118,8 @@ if (have_posts()) : while (have_posts()) : the_post();
             <div class="modal-body">
                 <div class="modal-image-section">
                     <div class="image-placeholder-container">
-                        <div class="image-placeholder-square"></div>
                         <img src="" alt="Filling Image Full" id="modal-filling-image-full" style="display: none;">
+                        <div class="image-placeholder-square"></div>
                     </div>
                 </div>
                 <div class="modal-details-section">

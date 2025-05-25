@@ -101,15 +101,12 @@
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 1rem 1rem 1rem;
-    width: 100%;
-    max-width: 520px;
-    max-height: 70%;
+    width: 560px;
+    height: auto;
+    max-height: none;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    display: block;
+    padding: 1rem;
     box-sizing: border-box;
 }
 

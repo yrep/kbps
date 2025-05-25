@@ -324,13 +324,17 @@ class KBPSCakePostManager {
 
 	// Sort by model
 	public function kbps_sort_cakes_by_model($query) {
-		if ( ! is_admin() && $query->is_main_query() && is_tax('cake-type') ) {
+		if ( ! is_admin() && $query->is_main_query() && is_tax('cake_type') ) {
 			$query->set('meta_key', 'kbps_model');
 			$query->set('orderby', 'meta_value_num');
 			$query->set('order', 'ASC');
+			$query->set('meta_query', [
+				[
+					'key'     => 'kbps_model',
+					'compare' => 'EXISTS',
+				],
+			]);
 		}
 	}
-
-
 
 }

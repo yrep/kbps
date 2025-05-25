@@ -19,6 +19,7 @@ h2 {
     background-size: cover;
     background-position: center;
 }
+
 .cake-card__model-number {
     position: absolute;
     bottom: 10px;
@@ -34,6 +35,7 @@ h2 {
     cursor: pointer;
     border: none;
 }
+
 .cake-modal {
     position: fixed;
     top: 0;
@@ -145,4 +147,101 @@ h2 {
 
 .wedding-block__big-photo-wrapper:hover .cake-card__model {
     background-color: var(--kbps-global-color-secondary);
+}
+
+
+
+/*Cake gallery*/
+
+.cake-archive {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .cake-archive {
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    .cake-archive {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.cake-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 200px;
+    height: auto;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.cake-card:hover {
+    transform: scale(1.02);
+}
+
+/* Контейнер для изображения */
+.cake-image-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* Соотношение 2:3 через padding trick */
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.cake-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.model-number.cake-card__model {
+    width: 18px;
+    height: 18px;
+    align-self: center;
+    padding: 0.6rem 0.6rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--kbps-global-color-main);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+/*Cake type title text*/
+
+.cake-type-title-text {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.cake-type-title-text .left-column,
+.cake-type-title-text .right-column {
+    flex: 1 1 50%;
+    min-width: 50%;
+}
+
+/*Hide on mobile*/
+@media (max-width: 420px) {
+    .cake-type-title-text {
+        display: none;
+    }
 }

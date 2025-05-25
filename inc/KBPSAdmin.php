@@ -101,10 +101,13 @@ class KBPSAdmin {
     }
     */
 
+    //TODO make universal
     public function front_page_cakes_setting_registration() {
         register_setting('kbps_front_page_options', 'kbps_front_cake_models');
         register_setting('kbps_cake_settings_group', 'kbps_cake_default_description');
         register_setting('kbps_cake_settings_group', 'kbps_cake_append_mode'); // checkbox append description
+
+        register_setting('kbps_cake_settings_group', 'kbps_wedding_cakes_archive_title_text');
 
         add_settings_section(
             'kbps_cake_main_section',
@@ -112,6 +115,28 @@ class KBPSAdmin {
             null,
             'kbps_cake_settings'
         );
+
+
+
+         // Cake Type Wedding
+        add_settings_field(
+            'kbps_wedding_cakes_archive_title_text',
+            __('Text for Wedding Cakes Archive Page', 'kbps'),
+            function () {
+                $value = get_option('kbps_wedding_cakes_archive_title_text', '');
+                echo '<textarea name="kbps_wedding_cakes_archive_title_text" rows="5" cols="50" class="large-text">' . esc_textarea($value) . '</textarea>';
+                echo '<p class="description">Zadejte text, který se má zobrazit v levé kolonce na stránce archivu svatebních dortů.</p>';
+            },
+            'kbps_cake_settings',
+            'kbps_cake_main_section'
+        );
+
+
+
+
+
+
+
 
         add_settings_field(
             'kbps_cake_default_description',

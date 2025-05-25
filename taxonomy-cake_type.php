@@ -4,8 +4,27 @@ $term = get_queried_object();
 ?>
 <main id="main-content">
     <header class="archive-header">
-        <h1 class="archive-title"><?php echo esc_html($term->name); ?></h1>
+        <h1 class="archive-title cake-type hidden"><?php echo esc_html($term->name); ?></h1>
     </header>
+
+
+<?php
+    $archive_text = get_option('kbps_wedding_cakes_archive_title_text', '');
+    if (!empty($archive_text)) :
+    ?>
+    <div class="cake-type-title-text">
+        <div class="left-column">
+            <?php echo wpautop(wp_kses_post($archive_text)); ?>
+        </div>
+        <div class="right-column">
+            <!-- Пустая правая колонка -->
+        </div>
+    </div>
+    <?php endif; ?>
+
+
+
+
 
     <div class="cake-archive">
         <?php if (have_posts()) : while (have_posts()) : the_post();

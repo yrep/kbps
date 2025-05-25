@@ -4,6 +4,7 @@ class KBPSCakePostManager {
 
 	public static function init() {
 		add_filter('the_content', [self::class, 'maybeAppendDefaultDescription']);
+		add_action('pre_get_posts', [self::class, 'kbps_sort_cakes_by_model']);
 	}
 
 
@@ -320,5 +321,16 @@ class KBPSCakePostManager {
 
 		return $content;
 	}
+
+	// Sort by model
+	public function kbps_sort_cakes_by_model($query) {
+		if ( ! is_admin() && $query->is_main_query() && is_tax('cake-type') ) {
+			$query->set('meta_key', 'kbps_model');
+			$query->set('orderby', 'meta_value_num');
+			$query->set('order', 'ASC');
+		}
+	}
+
+
 
 }

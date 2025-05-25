@@ -101,12 +101,12 @@
 }
 
 .modal-content {
-    width: 560px;
+    width: 620px;
     height: auto;
     max-height: none;
     overflow: hidden;
     display: block;
-    padding: 1rem;
+    padding: 1.4rem;
     box-sizing: border-box;
 }
 
@@ -150,8 +150,8 @@
 
 /* Контейнер под картинку */
 .image-placeholder-container {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,8 +168,8 @@
 
 /* Заглушка на время загрузки */
 .image-placeholder-square {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 600px;
     background-color: #ccc;
     animation: pulse-grey 1.5s infinite alternate;
     display: none;

@@ -50,9 +50,11 @@ $kbpsAjax = new KBPSAjax();
 $kbpsCakeRequest = new KBPSCakeRequestPostType();
 $kbpsCake = new KBPSCakePostType();
 $kbpsFilling = new KBPSFillingPostType();
-KBPSCakePostManager::init();
+//KBPSCakePostManager::init();
 
-
+add_action('after_setup_theme', function() {
+    KBPSCakePostManager::init();
+});
 
 //sm('Test debug message'));
 //KBPSLogger::get_instance()->info('Test Logger');

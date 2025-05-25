@@ -101,7 +101,7 @@
 }
 
 .modal-content {
-    width: 620px;
+    width: 400px;
     height: auto;
     max-height: none;
     overflow: hidden;
@@ -150,9 +150,9 @@
 
 /* Контейнер под картинку */
 .image-placeholder-container {
-    width: 400px;
+    width: 300px;
     height: auto;
-    max-height: 600px;
+    max-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,15 +162,15 @@
 /* Картинка */
 #modal-filling-image-full {
     display: block;
-    width: auto;
-    height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 /* Заглушка на время загрузки */
 .image-placeholder-square {
-    width: 400px;
-    height: 600px;
+    width: 300px;
+    height: 400px;
     background-color: #ccc;
     animation: pulse-grey 1.5s infinite alternate;
     display: none;

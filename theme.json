@@ -47,9 +47,9 @@
     },
     "typography": {
       "fontSizes": [
-        { "size": 8, "slug": "small" },
-        { "size": 14, "slug": "normal" },
-        { "size": 18, "slug": "large" }
+        { "size": 8, "slug": "small", "name": "Small" },
+        { "size": 12, "slug": "normal", "name": "Normal" },
+        { "size": 16, "slug": "large", "name": "Large" }
       ],
       "dropCap": true
     },

@@ -4,7 +4,9 @@ class KBPSThemeSetup {
         // High priority
         add_action('after_setup_theme', [$this, 'theme_setup'], 1);
         add_action('customize_register', [$this, 'kbps_register_customizer_settings'], 20);
-        
+        remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+        //add_filter('get_template_part', [$this, 'kbps_remove_sidebar_from_woocommerce'], 10, 3);
+        //add_filter('is_active_sidebar', [$this, 'kbps_return_false']);
 
         /*
         add_action('muplugins_loaded', [$this, 'mustuse_plugins_init'], 1);
@@ -25,6 +27,23 @@ class KBPSThemeSetup {
         add_action('template_redirect', [$this, 'custom_redirects'], 1);
         */
     }
+
+    /*
+    function kbps_remove_sidebar_from_woocommerce($template, $slug, $name) {
+        if ($slug === 'sidebar' && class_exists('WooCommerce') && (is_woocommerce() || is_product())) {
+            
+            return locate_template('');
+        }
+        return $template;
+    }
+    */
+
+
+
+    public function kbps_return_false(){
+            return false;
+        }
+
 
     public function theme_setup() {
         $this->kbps_register_menus();
@@ -60,4 +79,6 @@ class KBPSThemeSetup {
             $wp_customize->get_control('custom_logo')->section = 'title_tagline';
         }
     }
+    
+
 }

@@ -245,3 +245,12 @@ h2 {
         display: none;
     }
 }
+
+
+.wp-block-spacer {
+    background-color: var(--kbps-global-color-main);
+}
+
+div .product_meta {
+    display: none;
+}

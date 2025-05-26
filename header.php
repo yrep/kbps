@@ -79,7 +79,7 @@ global $kbpsCore;
             <div class="kbps-social-icons">
                 <a href="https://www.youtube.com/@KrakhmalnikovBrothers/" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.instagram.com/krakhmalnikov_brothers/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="tel:+420733392158" target="_blank"><i class="fas fa-phone"></i></a>
+                <a href="tel:+420733392158" target="_blank"><i class="fas fa-phone fa-sm"></i></a>
             </div>
 
             <!-- Лого -->

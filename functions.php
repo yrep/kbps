@@ -21,6 +21,7 @@ $required_files = [
     'inc/KBPSThemeAssets.php',
     'inc/KBPSPageManager.php',
     'inc/KBPSThemeCore.php',
+    'inc/KBPSCustomizerColors.php',
     'inc/KBPSAjax.php',
     'inc/KBPSCakeRequestPostType.php',
     'inc/KBPSCakePostType.php',
@@ -45,6 +46,7 @@ global $kbpsCore, $kbpsSetup, $kbpsAssets, $kbpsAjax;
 $kbpsCore = new KBPSThemeCore();
 $kbpsSetup = new KBPSThemeSetup();
 $KBPSAdmin = new KBPSAdmin();
+KBPSCustomizerColors::init();
 $kbpsAssets = new KBPSThemeAssets();
 $kbpsAjax = new KBPSAjax();
 $kbpsCakeRequest = new KBPSCakeRequestPostType();

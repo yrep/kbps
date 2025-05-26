@@ -254,3 +254,15 @@ h2 {
 div .product_meta {
     display: none;
 }
+
+.has-small-font-size {
+    font-size: 10px !important;
+}
+
+.has-normal-font-size {
+    font-size: 12px !important;
+}
+
+.has-large-font-size {
+    font-size: 16px !important;
+}

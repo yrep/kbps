@@ -3,8 +3,8 @@ class KBPSThemeSetup {
     public function __construct() {
         // High priority
         add_action('after_setup_theme', [$this, 'theme_setup'], 1);
-        
         add_action('customize_register', [$this, 'kbps_register_customizer_settings'], 20);
+        
 
         /*
         add_action('muplugins_loaded', [$this, 'mustuse_plugins_init'], 1);
@@ -48,6 +48,7 @@ class KBPSThemeSetup {
         
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
+        add_theme_support('woocommerce');
     }
 
     public function kbps_register_customizer_settings($wp_customize) {

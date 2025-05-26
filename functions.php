@@ -61,7 +61,7 @@ add_action('after_setup_theme', function() {
 
 register_activation_hook(__FILE__, function() {
     if (class_exists('KBPSLogger')) {
-        KBPSLogger::get_instance()->info('Theme Activated');
+        //KBPSLogger::get_instance()->info('Theme Activated');
     }
 });
 
@@ -81,6 +81,16 @@ add_filter('single_template', function($template) {
     return $template;
 });
 
+
+/*
+add_action('parse_request', function ($wp) {
+    KBPSLogger::get_instance()->info('Current request: ' . $wp->request);
+    KBPSLogger::get_instance()->info('Query vars: ' . print_r($wp->query_vars, true));
+});
+*/
+
+
+remove_filter('template_redirect', 'redirect_canonical');
 
 //sm('Test');
 

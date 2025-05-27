@@ -41,20 +41,22 @@ $term = get_queried_object();
             </div>
         <?php endwhile; ?>
 
-            <div class="pagination">
-                <?php
-                the_posts_pagination([
-                    'mid_size' => 2,
-                    'prev_text' => __('« Zpět', 'kbps'),
-                    'next_text' => __('Jedna »', 'kbps'),
-                ]);
-                ?>
-            </div>
-
         <?php else : ?>
             <p><?php _e('V současné době nejsou k dispozici žádné modely k objednání.', 'kbps'); ?></p>
         <?php endif; ?>
     </div>
+    <?php if (have_posts()) : ?>
+        <div class="pagination">
+            <?php
+            the_posts_pagination([
+                'mid_size' => 2,
+                'prev_text' => __('« Zpět', 'kbps'),
+                'next_text' => __('Další »', 'kbps'),
+            ]);
+            ?>
+        </div>
+    <?php endif; ?>
+
 </main>
 
 

@@ -266,3 +266,9 @@ div .product_meta {
 .has-large-font-size {
     font-size: 16px !important;
 }
+
+.pagination {
+    display: block;
+    font-size: small;
+    font-weight: 200;
+}

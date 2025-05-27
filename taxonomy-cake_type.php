@@ -39,8 +39,20 @@ $term = get_queried_object();
                     <?php echo esc_html($model); ?>
                 </button>
             </div>
-        <?php endwhile; else : ?>
-            <p><?php _e('No cakes found.', 'kbps'); ?></p>
+        <?php endwhile; ?>
+
+            <div class="pagination">
+                <?php
+                the_posts_pagination([
+                    'mid_size' => 2,
+                    'prev_text' => __('« Zpět', 'kbps'),
+                    'next_text' => __('Jedna »', 'kbps'),
+                ]);
+                ?>
+            </div>
+
+        <?php else : ?>
+            <p><?php _e('V současné době nejsou k dispozici žádné modely k objednání.', 'kbps'); ?></p>
         <?php endif; ?>
     </div>
 </main>

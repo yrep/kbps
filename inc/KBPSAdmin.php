@@ -70,8 +70,8 @@ class KBPSAdmin {
 
         add_submenu_page(
             'kbps_menu',
-            __('Cake Orders', 'kbps'),
-            __('Cake Orders', 'kbps'),
+            __('Cake Requests', 'kbps'),
+            __('Cake Requests', 'kbps'),
             'manage_options',
             'edit.php?post_type=cake_request'
         );

@@ -28,7 +28,7 @@ class KBPSCakeRequestPostType {
             'public'             => false,
             'publicly_queryable' => false,
             'show_ui'            => true,
-            'show_in_menu'       => false,
+            'show_in_menu'       => true,
             'query_var'          => false,
             'capability_type'    => 'post',
             'capabilities'       => array(

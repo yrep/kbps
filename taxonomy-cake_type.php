@@ -37,17 +37,17 @@ $term = get_queried_object();
                         <?php
                         the_post_thumbnail('large', [
                             'class' => 'cake-image__img',
-                            'alt' => esc_attr(get_the_title()),
+                            'alt'   => esc_attr(get_the_title()),
                             'loading' => 'lazy',
                             'decoding' => 'async',
                         ]);
                         ?>
+                        <?php if (!empty($model)) : ?>
+                            <span class="cake-card__model" data-model="<?php echo esc_attr($model); ?>">
+                                <?php echo esc_html($model); ?>
+                            </span>
+                        <?php endif; ?>
                     </a>
-                    <?php if (!empty($model)) : ?>
-                        <button class="model-number cake-card__model" data-model="<?php echo esc_attr($model); ?>">
-                            <?php echo esc_html($model); ?>
-                        </button>
-                    <?php endif; ?>
                 </div>
 
 

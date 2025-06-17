@@ -17,6 +17,9 @@ class KBPSAjax {
 
         add_action('wp_ajax_get_filling_data', array($this, 'kbps_ajax_get_filling_data'));
         add_action('wp_ajax_nopriv_get_filling_data', array($this, 'kbps_ajax_get_filling_data'));
+
+        add_action('wp_ajax_kbps_process_order_form', array($this, 'kbps_process_order_form'));
+        add_action('wp_ajax_nopriv_kbps_process_order_form', array($this, 'kbps_process_order_form'));
     }
 
     // Удаление товара
@@ -165,8 +168,8 @@ class KBPSAjax {
     
     
     
-    public function process_order_form() {
-        // Проверка nonce
+    public function kbps_process_order_form() {
+
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'kbps_order_nonce')) {
             wp_send_json_error(array(
                 'message' => 'Chyba ověření bezpečnosti.',
@@ -174,7 +177,7 @@ class KBPSAjax {
             ), 400);
         }
 
-        // Проверка наличия всех обязательных полей
+
         $required_fields = array(
             'cake-model' => 'Model dortu',
             'name' => 'Jméno',
@@ -194,7 +197,6 @@ class KBPSAjax {
             }
         }
 
-        // Санитизация данных
         $order_data = array(
             'cake_model' => sanitize_text_field($_POST['cake-model']),
             'name' => sanitize_text_field($_POST['name']),
@@ -205,7 +207,6 @@ class KBPSAjax {
             'guests' => absint($_POST['guests'])
         );
 
-        // Валидация email
         if (!is_email($order_data['email'])) {
             wp_send_json_error(array(
                 'message' => 'Neplatná emailová adresa.',
@@ -213,15 +214,13 @@ class KBPSAjax {
             ), 400);
         }
 
-        // Валидация номера телефона
         if (!preg_match('/^[0-9]{10,15}$/', $order_data['mobile'])) {
             wp_send_json_error(array(
-                'message' => 'Neplatné telefonní číslo.',
+                'message' => 'Neplatné telefonní číslo. Používejte pouze číslice bez mezer a jakýchkoli znaků.',
                 'debug' => 'Invalid phone number'
             ), 400);
         }
 
-        // Сохранение заказа в кастомный тип поста
         $post_data = array(
             'post_title'   => 'Objednávka od ' . $order_data['name'] . ' (' . date('Y-m-d H:i:s') . ')',
             'post_type'    => 'cake_request',
@@ -234,7 +233,7 @@ class KBPSAjax {
                 'kbps_wedding_date'  => $order_data['wedding_date'],
                 'kbps_venue'         => $order_data['venue'],
                 'kbps_guests'        => $order_data['guests'],
-                'kbps_status'        => 'new', // Установка статуса по умолчанию
+                'kbps_status'        => 'new',
                 'kbps_email_sent'    => false,
                 'kbps_error'         => ''
             )
@@ -249,8 +248,7 @@ class KBPSAjax {
             ), 500);
         }
 
-        // Отправка email администратору
-        $htmlFormat = true; // Переключатель формата письма (true - HTML, false - текст)
+        $htmlFormat = true;
         $to = get_option('admin_email');
         $subject = 'Nová objednávka dortu';
 
@@ -271,10 +269,8 @@ class KBPSAjax {
             $headers = array('Content-Type: text/plain; charset=UTF-8');
         }
 
-        // Попытка отправки письма
         $email_sent = wp_mail($to, $subject, $message, $headers);
 
-        // Обновление метаполей в зависимости от результата отправки
         if ($email_sent) {
             update_post_meta($post_id, 'kbps_email_sent', true);
             update_post_meta($post_id, 'kbps_error', '');
@@ -294,9 +290,4 @@ class KBPSAjax {
 
         wp_die();
     }
-
-
-
-   
-
 }

@@ -237,3 +237,22 @@ input:focus, textarea:focus {
   font-weight: 200;
   display: inline-block;
 }
+
+
+
+
+/*CATEGORY CAKE*/
+
+.cake-image__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.cake-image-link {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+}

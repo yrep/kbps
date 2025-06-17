@@ -241,6 +241,17 @@ h2 {
     transform: scale(1.02);
 }
 
+.cake-card:hover .cake-card__model {
+    background: var(--kbps-global-color-main);
+    color: #fff;
+}
+
+.cake-card__model {
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+
 /* Контейнер для изображения */
 .cake-image-link {
     display: block;

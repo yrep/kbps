@@ -33,7 +33,21 @@ $term = get_queried_object();
         ?>
             <div class="cake-card cake-type" data-cake-id="<?php the_ID(); ?>">
                 <a href="<?php the_permalink(); ?>" class="cake-image-link">
-                    <div class="cake-image" style="background-image: url('<?php echo esc_url($thumbnail); ?>');"></div>
+                    <?php 
+                    if (has_post_thumbnail()) {
+                        the_post_thumbnail('large', [
+                            'class' => 'cake-image__img',
+                            'loading' => 'lazy',
+                            'alt' => get_the_title(),
+                        ]);
+                    } else {
+                        ?>
+                        <img src="<?php echo esc_url(KBPS_THEME_URI . 'assets/images/placeholders/cake_placeholder.png'); ?>" 
+                            alt="<?php echo esc_attr(get_the_title()); ?>" 
+                            class="cake-image__img" loading="lazy">
+                        <?php
+                    }
+                    ?>
                 </a>
                 <button class="model-number cake-card__model" data-model="<?php echo esc_attr($model); ?>">
                     <?php echo esc_html($model); ?>

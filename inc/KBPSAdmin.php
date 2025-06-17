@@ -67,6 +67,14 @@ class KBPSAdmin {
             'kbps_cake_settings',
             array($this, 'render_cake_settings_page')
         );
+
+        add_submenu_page(
+            'kbps_menu',
+            __('Cake Orders', 'kbps'),
+            __('Cake Orders', 'kbps'),
+            'manage_options',
+            'edit.php?post_type=cake_request'
+        );
     }
 
     public function kbps_front_page_settings() {

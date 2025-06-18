@@ -229,6 +229,10 @@
     width: 38px;
     height: 38px;
     }
+
+.wedding-block-container {
+    height: 70vh;
+}
 }
 
 .slider.cake-card:hover .cake-card__model {

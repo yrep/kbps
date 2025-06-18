@@ -260,9 +260,9 @@
 
     .wedding-block__big-photo-wrapper img,
     .wedding-block__small-photo-wrapper img {
-        width: auto;
-        height: 100%;
-        object-fit: contain;
+        width: 100%;
+        /*height: 100%;*/
+        object-fit: cover;
     }
 
     /* Hide specific elements on mobile */

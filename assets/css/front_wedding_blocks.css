@@ -261,7 +261,7 @@
     .wedding-block__big-photo-wrapper img,
     .wedding-block__small-photo-wrapper img {
         width: 100%;
-        /*height: 100%;*/
+        height: 100%;
         object-fit: cover;
     }
 

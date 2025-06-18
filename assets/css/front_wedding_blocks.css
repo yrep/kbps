@@ -280,7 +280,7 @@
             "text text"    
             "big  small-1"
             "big  .      ";
-        gap: 0;
+        gap: 0.6rem;
     }
 
     /* BLOCK 2 Mobile */
@@ -292,7 +292,7 @@
             "small-1 big big"
             ".       big big"
             ".       big big";
-        gap: 0;
+        gap: 0.6rem;
     }
 
     /* BLOCK 3 Mobile */
@@ -302,7 +302,7 @@
         grid-template-areas:
             "big .      "
             "big small-1";
-        gap: 0;
+        gap: 0.6rem;
     }
 
     /* BLOCK 4 Mobile */
@@ -315,7 +315,7 @@
             "small-1 big"
             "small-1 big"
             ".       big";
-        gap: 0;
+        gap: 0.6rem;
     }
 
     /* Cake Model Indicator adjustments for mobile if needed */

@@ -321,7 +321,7 @@ h2 {
 }
 
 
-.wp-block-spacer {
+.wp-block-spacer.spacer-color {
     background-color: var(--kbps-global-color-main);
 }
 

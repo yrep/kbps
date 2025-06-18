@@ -256,7 +256,7 @@
     .wedding-block-container {
         min-height: unset;
         height: auto;
-        margin-bottom: 2rem;
+        /*margin-bottom: 2rem;*/
     }
 
     .cake-photo-link {

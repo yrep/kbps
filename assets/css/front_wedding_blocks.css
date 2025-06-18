@@ -60,7 +60,7 @@
 /*BLOCK 1*/
 .wedding-block.block-1{
     display: grid;
-    grid-template-columns: 36% 22% 42%;
+    grid-template-columns: 32% 26% 42%;
     grid-template-rows: 50% 50%;
     grid-template-areas:
     "big small-1 ."

@@ -176,6 +176,12 @@
     transform: scale(1.1);
 }
 
+/*
+.kbps-cart-count {
+    background-color: var(--kbps-global-color-secondary);
+    color: white;
+}
+
 .kbps-cart-count {
     position: absolute;
     top: -6px;
@@ -185,7 +191,6 @@
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    font-size: 12px;
     display: none;
     align-items: center;
     justify-content: center;
@@ -194,12 +199,80 @@
 }
 
 .kbps-cart-count.active {
-    display: inline-flex;
-}
+    background-color: blue !important;
+*/
 
+/*
 .kbps-cart-count:empty {
     display: none !important;
 }
+*/
+
+/*
+.kbps-cart-count {
+    display: block;
+    position: absolute;
+    opacity: 1 !important;
+    width: 20px;
+    height: 20px;
+    font-size: x-small;
+    font-weight: 400;
+    border-radius: 50%;
+    background-color: var(--kbps-global-color-secondary);
+    color: white;
+    top: -6px !important;
+    right: -10px !important;
+}
+
+.kbps-cart-count.active {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    font-size: x-small;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+    top: -6px !important;
+    right: -10px !important;
+}
+
+*/
+
+
+/* Стили для самого счетчика */
+.kbps-cart-count {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    font-size: x-small;
+    font-weight: 400;
+    border-radius: 50%;
+    background-color: var(--kbps-global-color-secondary);
+    color: white;
+    /* Эти значения top, right, etc. нужно будет подкорректировать, */
+    /* чтобы счетчик был точно над иконкой корзины. */
+    /* Используйте отрицательные значения для смещения вверх/влево от угла родителя */
+    top: -6px; /* Пример: чуть выше иконки */
+    right: -6px; /* Пример: чуть правее иконки */
+    display: none; /* Скрываем по умолчанию, пока active не добавится */
+    transition: all 0.2s ease-out; /* Плавное появление/исчезновение */
+    pointer-events: none; /* Чтобы не мешал кликам */
+    align-items: center; /* Центрирование текста по вертикали */
+    justify-content: center; /* Центрирование текста по горизонтали */
+}
+
+/* Стили, когда счетчик активен (отображается) */
+.kbps-cart-count.active {
+    display: inline-flex; /* Это покажет его */
+    /* Все остальные стили берутся из .kbps-cart-count */
+}
+
+
+
+
+
 
 body {
     padding-top: var(--header-height);

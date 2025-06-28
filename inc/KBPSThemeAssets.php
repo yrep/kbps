@@ -151,7 +151,8 @@ class KBPSThemeAssets {
         'kbps_cart_params',
         array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('kbps_cart_nonce')
+            'nonce' => wp_create_nonce('kbps_cart_nonce'),
+            //'cart_count' => WC()->cart ? WC()->cart->get_cart_contents_count() : 0,
         )
     );
 
@@ -207,60 +208,6 @@ class KBPSThemeAssets {
 
 }
 
-
-        /*
-        wp_enqueue_script('custom-menu', KBPS_THEME_URI . '/assets/js/mobile-menu.js', array(), '1.0', true);
-        wp_enqueue_script('to-top-button', KBPS_THEME_URI . '/assets/js/to-top-button.js', array(), '1.0', true);
-        
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('wc-cart-fragments');
-        
-        wp_localize_script('jquery', 'kbps_cart_params', array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-        ));
-
-
-        wp_enqueue_script(
-            'kbps-cake-order',
-            get_template_directory_uri() . '/assets/js/cake-order.js',
-            array(),
-            '1.0.1',
-            true
-        );
-
-        wp_enqueue_script(
-            'kbps-header',
-            get_template_directory_uri() . '/assets/js/header.js',
-            array('jquery'),
-            '1.0.1',
-            true
-        );
-
-        wp_localize_script(
-            'kbps-cake-order',
-            'kbpsAjax',
-            array(
-                'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('kbps_order_nonce')
-            )
-        );
-
-        wp_enqueue_script(
-            'swiper',
-            get_template_directory_uri() . '/assets/js/swiper-bundle.min.js',
-            [],
-            null,
-            true
-        );
-
-        wp_enqueue_script(
-            'kbps-front-page',
-            get_template_directory_uri() . '/assets/js/front-page.js',
-            array('swiper'),
-            '1.0.1',
-            true
-        );
-        */
 
 
     public function enqueueFontAwesome() {

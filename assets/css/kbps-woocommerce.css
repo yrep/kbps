@@ -325,3 +325,11 @@ label {
   max-height: none !important; /* Убираем ограничение */
   overflow: visible !important;
 }
+
+
+/* Enable cart thumbs on mobile*/
+@media only screen and (max-width: 768px) {
+    .woocommerce table.cart .product-thumbnail {
+        display: table-cell !important;
+    }
+}

@@ -333,3 +333,106 @@ label {
         display: table-cell !important;
     }
 }
+
+
+
+@media (max-width: 768px) {
+
+  /* Скрываем шапку таблицы */
+  table.cart thead {
+    display: none;
+  }
+
+  /* Таблица и её элементы — блочные */
+  table.cart,
+  table.cart tbody,
+  table.cart th,
+  table.cart td,
+  table.cart tr {
+    display: block !important;
+  }
+
+  /* Карточка товара */
+  table.cart tr.cart_item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  /* Убираем подписи из data-title */
+  table.cart td::before {
+    content: none !important;
+  }
+
+  /* Крестик удаления — абсолютный справа сверху */
+  table.cart tr.cart_item > td.product-remove {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+  }
+
+  table.cart tr.cart_item > td.product-remove a.remove {
+    font-size: 1.5rem;
+    color: #cc0000;
+    cursor: pointer;
+    text-decoration: none;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    padding: 0 6px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* Превью — на всю ширину */
+  table.cart tr.cart_item > td.product-thumbnail {
+    padding: 0;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  table.cart td.product-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    object-fit: contain;
+  }
+
+  /* Название товара — блок, на всю ширину */
+  table.cart td.product-name {
+    display: block;
+    padding: 0 0 0.75rem 0;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  table.cart td.product-name a {
+    display: inline-block;
+    font-size: smaller;
+    margin-top: 2rem;
+  }
+
+  /* Цена, количество и сумма — выравниваем по правому краю */
+  table.cart td.product-price,
+  table.cart td.product-quantity,
+  table.cart td.product-subtotal {
+    display: block;
+    padding: 0.25rem 1rem 0.25rem 0;
+    font-size: 0.9rem;
+    text-align: right !important;
+    direction: rtl !important;
+  }
+
+  /* Количество — убираем лишние отступы */
+  table.cart td.product-quantity .quantity {
+    padding-left: 0;
+  }
+
+}

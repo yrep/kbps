@@ -71,18 +71,8 @@ if (!defined('ABSPATH')) {
                 <!-- Меню с политиками -->
                 <?php
                 $is_front_page = is_front_page();
-                $is_svatebni_dort_archive = is_tax('cake-type', 'svatebni-dort');
-                $is_svatebni_model = false;
-
-                if (is_singular('cake')) {
-                    $terms = wp_get_post_terms(get_the_ID(), 'cake-type');
-                    foreach ($terms as $term) {
-                        if ($term->slug === 'svatebni-dort') {
-                            $is_svatebni_model = true;
-                            break;
-                        }
-                    }
-                }
+                $is_svatebni_dort_archive = is_tax('cake_type', 'svatebni-dort');
+                $is_svatebni_model = is_singular('cake') && has_term('svatebni-dort', 'cake_type');
 
                 if (!$is_front_page && !$is_svatebni_dort_archive && !$is_svatebni_model): ?>
                     <nav class="footer-info-menu under-logo">
@@ -104,6 +94,7 @@ if (!defined('ABSPATH')) {
         </div>
 
     </div>
+    <?php if (!$is_front_page && !$is_svatebni_dort_archive && !$is_svatebni_model): ?>
     <div class="payment-gateway-logos">
         <div class="comgate">
             <span>
@@ -122,6 +113,7 @@ if (!defined('ABSPATH')) {
             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/comgate/visa_ver_logo.png" alt="Logo 8">
         </div>
     </div>
+    <?php endif; ?>
     <div class="footer-copyright-container">
         <div class="footer-copyright">
             <?php echo '© ' . date('Y') . ' Krakhmalnikov Brothers.'; ?>

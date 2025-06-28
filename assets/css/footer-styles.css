@@ -9,6 +9,7 @@ input:focus, textarea:focus {
 
 .main-footer {
   background: #fff;
+  margin-top: 4rem;
   padding: 40px 0;
   /*border-top: 1px solid #c63232;*/
 }
@@ -39,6 +40,7 @@ input:focus, textarea:focus {
 
 .footer-actions {
   display: flex;
+  margin-top: 6rem;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
@@ -50,10 +52,10 @@ input:focus, textarea:focus {
 }
 
 .footer-logo {
+  margin-top: 4rem;
   align-self: flex-end;
   display: flex;
   align-items: center;
-  transform: translateY(100px);
 }
 
 
@@ -61,6 +63,37 @@ input:focus, textarea:focus {
   max-height: 80px;
   width: auto;
 }
+
+.footer-info-menu {
+  margin-top: 3rem;
+}
+
+.footer-info-menu a {
+  color: var(--kbps-global-color-main);
+  line-height: 2;
+  font-size: medium;
+  font-weight: 400;
+}
+
+.footer-info-menu a:hover {
+  color: var(--kbps-global-color-secondary);
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .footer-info-menu {
+    margin-top: 0;
+  }
+
+  .footer-info-menu a {
+    line-height: 1.6;
+    font-size: small;
+    font-weight: 400;
+  }
+}
+
+
 
 .form-section {
   flex-basis: 50%;
@@ -230,12 +263,80 @@ input:focus, textarea:focus {
 .footer-copyright-container {
   width: 100%;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .footer-copyright {
   font-size: x-small;
   font-weight: 200;
   display: inline-block;
+}
+
+
+@media (max-width: 420px) {
+  .footer-actions {
+    flex-direction: column;
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+
+.payment-gateway-logos {
+  display: flex;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 800px;
+  gap: 1rem;
+}
+
+@media (max-width: 420px) {
+  .payment-gateway-logos{
+    flex-direction: column;
+  }
+}
+
+.comgate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.comgate span {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  font-size: x-small;
+  font-weight: 200;
+}
+
+.comgate img {
+  height: auto;
+  max-height: 30px;
+  width: auto;
+  display: block;
+}
+
+
+.footer-comgate-logo-line {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    max-height: 600px;
+}
+
+.footer-comgate-logo-line img {
+    max-height: 100%;
+    height: auto;
+    width: 100%;
+    max-width: calc(100% / 8 - 10px);
+    object-fit: contain;
 }
 
 

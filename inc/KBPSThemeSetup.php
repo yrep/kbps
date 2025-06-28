@@ -3,6 +3,7 @@ class KBPSThemeSetup {
     public function __construct() {
         // High priority
         add_action('after_setup_theme', [$this, 'theme_setup'], 1);
+        add_action('after_setup_theme', [$this, 'kbps_create_footer_info_menu'], 99);
         add_action('customize_register', [$this, 'kbps_register_customizer_settings'], 20);
         remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
         //add_filter('get_template_part', [$this, 'kbps_remove_sidebar_from_woocommerce'], 10, 3);
@@ -53,6 +54,7 @@ class KBPSThemeSetup {
     public function kbps_register_menus() {
         register_nav_menus([
             'primary' => __('Primary Menu', 'kbps-theme'),
+            'footer-info' => __('Footer Info Menu', 'kbps-theme'),
         ]);
     }
 
@@ -80,5 +82,42 @@ class KBPSThemeSetup {
         }
     }
     
+
+    public function kbps_create_footer_info_menu() {
+        $menu_name = 'Footer Info Menu';
+        $menu_slug = 'footer-info';
+
+        $menu_exists = wp_get_nav_menu_object($menu_name);
+
+        if (!$menu_exists) {
+            $menu_id = wp_create_nav_menu($menu_name);
+
+            if (!is_wp_error($menu_id)) {
+                set_theme_mod('nav_menu_locations', array_merge(
+                    get_theme_mod('nav_menu_locations', []),
+                    [ $menu_slug => $menu_id ]
+                ));
+
+                $slugs = [
+                    'obchodni-podminky',
+                    'ochrana-osobnich-udaju',
+                    'platebni-podminky'
+                ];
+
+                foreach ($slugs as $slug) {
+                    $page = get_page_by_path($slug);
+                    if ($page) {
+                        wp_update_nav_menu_item($menu_id, 0, [
+                            'menu-item-title'  => $page->post_title,
+                            'menu-item-object' => 'page',
+                            'menu-item-object-id' => $page->ID,
+                            'menu-item-type'   => 'post_type',
+                            'menu-item-status' => 'publish'
+                        ]);
+                    }
+                }
+            }
+        }
+    }
 
 }

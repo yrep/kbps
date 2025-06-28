@@ -25,38 +25,43 @@ class KBPSAjax {
     // Удаление товара
     public function kbps_remove_cart_item_callback() {
         if (!check_ajax_referer('kbps_cart_nonce', '_wpnonce', false)) {
-            wp_send_json_error(array('message' => 'Invalid nonce'), 403);
+            wp_send_json_error(['message' => 'Invalid nonce'], 403);
             wp_die();
         }
 
-        if (!isset($_GET['cart_item_key']) || empty($_GET['cart_item_key'])) {
-            wp_send_json_error(array('message' => 'Cart item key missing'), 400);
-            wp_die();
-        }
-
-        if (!function_exists('WC') || !WC()->cart) {
-            wp_send_json_error(array('message' => 'Cart not available'), 500);
+        if (empty($_GET['cart_item_key'])) {
+            wp_send_json_error(['message' => 'Cart item key missing'], 400);
             wp_die();
         }
 
         $cart_item_key = sanitize_text_field($_GET['cart_item_key']);
         $cart = WC()->cart;
+
+        if (!$cart) {
+            wp_send_json_error(['message' => 'Cart not available'], 500);
+            wp_die();
+        }
+
         $removed = $cart->remove_cart_item($cart_item_key);
 
+        // Принудительно пересчитать корзину и сбросить куки (чтобы обновился счетчик)
+        WC()->cart->calculate_totals();
+        WC()->cart->maybe_set_cart_cookies();
+
         if ($removed || !$cart->get_cart_item($cart_item_key)) {
-            $cart->calculate_totals();
             do_action('woocommerce_cart_updated');
             $fragments = $this->kbps_cart_count_fragment(array());
-            wp_send_json_success(array(
+            wp_send_json_success([
                 'fragments' => $fragments,
                 'cart_item_key' => $cart_item_key,
                 'cart_count' => $cart->get_cart_contents_count()
-            ));
+            ]);
         } else {
-            wp_send_json_error(array('message' => 'Failed to remove item: ' . $cart_item_key));
+            wp_send_json_error(['message' => 'Failed to remove item: ' . $cart_item_key]);
         }
         wp_die();
     }
+
 
     // Фрагмент счётчика
     public function kbps_cart_count_fragment($fragments) {
@@ -67,6 +72,7 @@ class KBPSAjax {
         $fragments['.kbps-cart-count'] = ob_get_clean();
         return $fragments;
     }
+
 
     // AJAX для блочной корзины
     public function kbps_force_cart_ajax() {
@@ -82,8 +88,9 @@ class KBPSAjax {
                         return;
                     }
                     console.log("Remove triggered for key:", cartItemKey);
-                    // Скрываем элемент сразу
-                    $cartItem.fadeOut(200);
+
+                    $this.prop("disabled", true); // блокируем кнопку, чтобы предотвратить повторные клики
+
                     jQuery.ajax({
                         url: "' . admin_url('admin-ajax.php') . '",
                         type: "GET",
@@ -96,10 +103,13 @@ class KBPSAjax {
                         cache: false,
                         success: function(response) {
                             if (response.success) {
-                                console.log("Item removed:", response);
                                 // Обновляем счётчик
                                 jQuery(".kbps-cart-count").text(response.data.cart_count);
-                                // Синхронизируем корзину
+                                // Плавно убираем товар из корзины после успешного удаления
+                                $cartItem.fadeOut(200, function() {
+                                    jQuery(this).remove();
+                                });
+                                // Триггеры обновления корзины
                                 jQuery(document.body).trigger("wc_fragment_refresh");
                                 jQuery(document.body).trigger("wc_cart_updated");
                                 jQuery(document.body).trigger("wc-blocks_cart_updated");
@@ -114,12 +124,17 @@ class KBPSAjax {
                         error: function(xhr, status, error) {
                             console.error("Remove error:", status, error);
                             $cartItem.fadeIn(200);
+                        },
+                        complete: function() {
+                            // Разблокируем кнопку удаления в любом случае
+                            $this.prop("disabled", false);
                         }
                     });
                 });
             ');
         }
     }
+
 
 
 

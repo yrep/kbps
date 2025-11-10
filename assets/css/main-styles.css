@@ -201,6 +201,10 @@ h2 {
 
 /*SLIDER*/
 
+.cake-slider-container{
+    margin-top: 2rem;
+}
+
 .slider.cake-card {
     height: 40vh;
     width: 100%;

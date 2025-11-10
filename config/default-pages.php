@@ -43,7 +43,7 @@ return [
         'template' => 'page-information.php',
     ],
     'shop' => [
-    'title' => 'Cukrárna',
+    'title' => 'Online Cukrárna',
     'slug' => 'cukrarna',
     'is_woocommerce_shop' => true,
     'status' => 'publish',

@@ -3,6 +3,19 @@ h2 {
     font-size: medium;
 }
 
+.kbph-seo-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+
 /*
 .cake-archive {
     display: grid;

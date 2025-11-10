@@ -37,7 +37,7 @@ $data = wp_parse_args($args, $defaults);
         </div>
     </a>
     
-    <h3 class="slider cake-card__title">
+    <h3 class="slider cake-card__title kbph-seo-only">
         <?php echo esc_html($data['title']); ?>
     </h3>
 </div>

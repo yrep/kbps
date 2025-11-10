@@ -134,13 +134,14 @@
 .wedding-block.block-3{
     display: grid;
     grid-template-columns: 50% 20% 30%;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 50% 50%;
     grid-template-areas:
     "big  small-1  ."
     "big .         small-2";
     gap: 1rem;
     width: 100%;
-    min-height: 300px;
+    height: auto;
+    min-height: unset;
 }
 
 
@@ -247,14 +248,15 @@
 }
 
 @media (min-width: 1023px) {
-.cake-card__model {
-    width: 38px;
-    height: 38px;
+    .cake-card__model {
+        width: 38px;
+        height: 38px;
     }
 
-.wedding-block-container {
-    height: 70vh;
-}
+    .wedding-block-container {
+        height: auto;
+        min-height: 500px;
+    }
 }
 
 .slider.cake-card:hover .cake-card__model {
@@ -280,9 +282,8 @@
 
 
     .wedding-block-container {
-        min-height: unset;
         height: auto;
-        /*margin-bottom: 2rem;*/
+        min-height: 400px;
     }
 
     .cake-photo-link {

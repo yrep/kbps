@@ -29,6 +29,9 @@ $required_files = [
     'inc/KBPSCakePostManager.php',
     'inc/KBPSStaticPhotoManager.php',
     'inc/KBPSFillingPostManager.php',
+     // Recipe Post
+    'inc/KBPSRecipePostType.php',
+    'inc/KBPSRecipeProductManager.php',
 ];
 
 
@@ -53,6 +56,8 @@ $kbpsCakeRequest = new KBPSCakeRequestPostType();
 $kbpsCake = new KBPSCakePostType();
 $kbpsFilling = new KBPSFillingPostType();
 //KBPSCakePostManager::init();
+$kbpsRecipe = new KBPSRecipePostType();
+$kbpsRecipeProduct = new KBPSRecipeProductManager();
 
 add_action('after_setup_theme', function() {
     KBPSCakePostManager::init();
